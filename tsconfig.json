@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "es6",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
@@ -13,7 +13,25 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "incremental": true
+    "incremental": true,
+    "baseUrl": "src",
+    "paths": {
+      "@/components/*": ["components/*"],
+      "@/layout/*": ["layout/*"],
+      "@/pages/*": ["pages/*"],
+      "@/store/*": ["store/*"],
+      "@/types/*": ["types/*"],
+      "@/lib/*": ["lib/*"],
+      "@/constants/*": ["lib/constants/*"],
+      "@/models/*": ["lib/models/*"],
+      "@/http/*": ["lib/http/*"],
+      "@/styles/*": ["styles/*"],
+      "@/UI/*": ["UI/*"],
+      "@/icon/*": ["assets/Icon/*"],
+      "@/image/*": ["assets/Image/*"],
+      "@/hooks/*": ["hooks/*"],
+      "@/fetch/*": ["lib/fetch/*"]
+    }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]
