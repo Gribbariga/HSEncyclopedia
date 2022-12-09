@@ -1,5 +1,5 @@
 import React from "react";
-import { userFooterStyles } from "./style";
+import { userFooterStyles } from "../style";
 
 import Vk from "@/icon/vk.svg";
 import Github from "@/icon/Github.svg";

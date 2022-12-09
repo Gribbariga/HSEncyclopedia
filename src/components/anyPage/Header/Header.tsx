@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React from "react";
-import { ContainerSC } from "../anyPage/Container/Container";
+import { ContainerSC } from "../Container/Container";
 import { useHeaderStyles } from "./style";
 
 const Header = () => {
