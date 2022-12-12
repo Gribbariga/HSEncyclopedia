@@ -1,10 +1,14 @@
 import React from "react";
-import { useMainPageStyle } from "./style";
+import AboutHS from "./AboutHS/AboutHS";
+import GameMode from "./GameMode/GameMode";
 
 const MainPage = () => {
-  return <SectionSC></SectionSC>;
+  return (
+    <>
+      <AboutHS />
+      <GameMode />
+    </>
+  );
 };
-
-const { VideoSC, SectionSC, MainTitleSC, DescriptionSC } = useMainPageStyle();
 
 export default React.memo(MainPage);
