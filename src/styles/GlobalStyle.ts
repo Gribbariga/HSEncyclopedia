@@ -23,6 +23,7 @@ export const GlobalStyles = createGlobalStyle`
     display: flex;
     position: relative;
     flex-direction: column;
+    overflow-y:scroll;
   }
 
   main {
