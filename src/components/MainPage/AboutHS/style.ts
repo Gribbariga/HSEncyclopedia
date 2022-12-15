@@ -28,7 +28,8 @@ const VideoSC = styled("video")`
   transform: translate3d(-50%, 0px, 0px);
   max-width: none;
   margin: auto;
-  filter: blur(1px) hue-rotate(200deg);
+  object-fit: cover;
+  filter: hue-rotate(200deg);
 `;
 
 const MainTitleSC = styled("h1")`

@@ -27,13 +27,17 @@ const TitleSC = styled("h2")`
   margin-bottom: 15px;
   z-index: 3;
 `;
-
+const SwiperSC = styled(Swiper)`
+  width: 100%;
+  height: 720px;
+  z-index: 1000;
+`;
 const SwiperSlideSC = styled(SwiperSlide)`
   height: 100%;
 `;
 
-const OneSlideWrapperSC = styled("div")`
-  background-image: url(img/image/MainPageSlideOne.jpg);
+const SlideWrapperSC = styled("div")<{ BGUrl: string }>`
+  background-image: url(${({ BGUrl }) => BGUrl});
   background-repeat: no-repeat;
   background-size: 100% 100%;
   height: 100%;
@@ -41,11 +45,11 @@ const OneSlideWrapperSC = styled("div")`
   padding: 40px 20px 20px 20px;
 `;
 
-const OneSlideTitleSC = styled("h3")`
+const SlideTitleSC = styled("h3")`
   font-size: 35px;
   font-weight: 500;
   color: #ffffff;
-  margin-bottom: 50px;
+  margin-bottom: 100px;
 `;
 
 const OneSlideDescrSC = styled("div")`
@@ -56,35 +60,33 @@ const OneSlideDescrSC = styled("div")`
   margin-left: 15px;
 `;
 
-const TwoSlideWrapperSC = styled(OneSlideWrapperSC)`
+const TwoSlideWrapperSC = styled(SlideWrapperSC)`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-image: url(img/image/MainPageSlideTwo.jpg);
   padding: 40px 80px 180px 20px;
 `;
-
-const TwoSlideTitleSC = styled(OneSlideTitleSC)``;
 
 const TwoSlideDescrSC = styled(OneSlideDescrSC)`
   width: 70%;
 `;
 
-const SwiperSC = styled(Swiper)`
-  width: 100%;
-  height: 720px;
-  z-index: 1000;
-  background-filter: blur(2px);
+const ThreeSlideDescrSC = styled(TwoSlideDescrSC)`
+  width: 40%;
 `;
 
+const FourSlideDescrSC = styled(OneSlideDescrSC)`
+  width: 40%;
+`;
 export const useGameModeStyle = () => ({
-  OneSlideWrapperSC,
   TwoSlideWrapperSC,
+  ThreeSlideDescrSC,
+  FourSlideDescrSC,
   TwoSlideDescrSC,
-  OneSlideTitleSC,
-  TwoSlideTitleSC,
   OneSlideDescrSC,
+  SlideWrapperSC,
   SwiperSlideSC,
+  SlideTitleSC,
   SectionSC,
   SwiperSC,
   TitleSC,

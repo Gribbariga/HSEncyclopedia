@@ -11,6 +11,7 @@ const AboutHS = () => {
           autoPlay={true}
           loop={true}
           muted={true}
+          width={"100%"}
         />
         <ContainerSC>
           <MainTitleSC>
