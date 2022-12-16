@@ -43,6 +43,7 @@ const SlideWrapperSC = styled("div")<{ BGUrl: string }>`
   height: 100%;
   object-fit: cover;
   padding: 40px 20px 20px 20px;
+  user-select: none;
 `;
 
 const SlideTitleSC = styled("h3")`
@@ -52,7 +53,7 @@ const SlideTitleSC = styled("h3")`
   margin-bottom: 100px;
 `;
 
-const OneSlideDescrSC = styled("div")`
+const OneSlideDescrSC = styled("p")`
   font-size: 35px;
   font-weight: 500;
   color: #ffffff;
