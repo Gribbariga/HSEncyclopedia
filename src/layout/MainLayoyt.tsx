@@ -1,5 +1,5 @@
-import Footer from "@/components/Footer/Footer";
-import Header from "@/components/Header/Header";
+import Footer from "@/components/anyPage/Footer/Footer";
+import Header from "@/components/anyPage/Header/Header";
 import React, { FC } from "react";
 
 interface IMainLayoutProps {

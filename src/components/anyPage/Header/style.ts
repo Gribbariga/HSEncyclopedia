@@ -2,6 +2,8 @@ import Link from "next/link";
 import styled from "styled-components";
 
 const HeaderSC = styled("header")`
+  position: sticky;
+  top: 0;
   width: 100%;
   height: 60px;
   background: url(/img/image/headerBG.png);
