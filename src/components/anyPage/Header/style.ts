@@ -7,6 +7,7 @@ const HeaderSC = styled("header")`
   width: 100%;
   height: 60px;
   background: url(/img/image/headerBG.png);
+  z-index: 9999;
 `;
 const WrapperSC = styled("div")`
   display: flex;
