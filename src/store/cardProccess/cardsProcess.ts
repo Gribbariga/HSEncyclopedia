@@ -2,9 +2,9 @@ import { NameSpacesStore } from "@/lib/constants/store";
 import { ICards } from "@/lib/models/cardsModel";
 import { StateType } from "@/types/store/state";
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchCards } from "./asyncThunk/cardsApi";
+import { addLoadingCards, fetchCards } from "./asyncThunk/cardsApi";
 
-interface IInitialState {
+export interface IInitialState {
   cards: ICards[];
   page: number;
   limit: number;
@@ -30,7 +30,9 @@ const AppCards = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchCards.pending, (state) => {
+      state.cards = [];
       state.loading = true;
+      state.error = false;
     });
     builder.addCase(fetchCards.fulfilled, (state, action) => {
       state.cardCount = action.payload.cardCount;
@@ -41,6 +43,19 @@ const AppCards = createSlice({
     });
     builder.addCase(fetchCards.rejected, (state) => {
       state.error = true;
+      state.loading = false;
+    });
+    builder.addCase(addLoadingCards.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(addLoadingCards.fulfilled, (state, action) => {
+      state.page += 1;
+      state.cards = [...state.cards, ...action.payload.cards];
+      state.loading = false;
+    });
+    builder.addCase(addLoadingCards.rejected, (state) => {
+      state.error = true;
+      state.loading = false;
     });
   },
 });

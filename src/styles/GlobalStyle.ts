@@ -3,11 +3,11 @@ import { createGlobalStyle } from "styled-components";
 export const GlobalStyles = createGlobalStyle`
   
   html {
-    height: 100%;
+    /* min-height: 100%; */
   }
 
   body {
-    height: 100%;
+    /* min-height: 100%; */
     min-height: 100vh;
     padding: 0;
     margin: 0;
@@ -17,13 +17,12 @@ export const GlobalStyles = createGlobalStyle`
 
   #__next {
     width: 100%;
-    height: 100%;
+    /* min-height: 100%; */
     min-height: 100vh;
     margin: 0 auto;
     display: flex;
     position: relative;
     flex-direction: column;
-    overflow-y:scroll;
   }
 
   main {
