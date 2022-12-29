@@ -1,5 +1,10 @@
 import styled from "styled-components";
 
+const CardsBackgroundSC = styled("div")`
+  background-image: url("img/image/CardsBG.jpg");
+  background-repeat: round;
+`;
+
 const ListSC = styled("div")`
   display: flex;
   flex-wrap: wrap;
@@ -8,4 +13,5 @@ const ListSC = styled("div")`
 
 export const useCardsStyle = () => ({
   ListSC,
+  CardsBackgroundSC,
 });
