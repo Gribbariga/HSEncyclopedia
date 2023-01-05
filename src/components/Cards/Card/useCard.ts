@@ -1,4 +1,8 @@
+import { useState } from "react";
+
 export const useCard = () => {
+  const [isFullView, setIsFullView] = useState(false);
+
   const fCardRotate = (event: React.MouseEvent<HTMLDivElement>) => {
     const currentTarget = event.currentTarget;
     const nativeEvent = event.nativeEvent;
@@ -11,6 +15,9 @@ export const useCard = () => {
   const CardMouseLive = (event: React.MouseEvent<HTMLDivElement>) => {
     event.currentTarget.style.transform = "";
   };
+  const handlerClick = () => {
+    setIsFullView((prev) => !prev);
+  };
 
-  return { CardMouseLive, fCardRotate };
+  return { CardMouseLive, handlerClick, isFullView, fCardRotate };
 };

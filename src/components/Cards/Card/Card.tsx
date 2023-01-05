@@ -1,4 +1,5 @@
 import { memo, FC } from "react";
+import FullView from "./FullView/FullView";
 import { useCardStyle } from "./style";
 import { useCard } from "./useCard";
 
@@ -7,13 +8,21 @@ interface ICard {
 }
 
 const Card: FC<ICard> = ({ img }) => {
-  const { CardMouseLive, fCardRotate } = useCard();
+  const { CardMouseLive, isFullView, handlerClick, fCardRotate } = useCard();
   return (
-    <CardWrapperSC onMouseMove={fCardRotate} onMouseLeave={CardMouseLive}>
-      <CardPerspectiveSC onMouseMove={fCardRotate} onMouseLeave={CardMouseLive}>
-        <ImageSC src={img} />
-      </CardPerspectiveSC>
-    </CardWrapperSC>
+    <>
+      <CardWrapperSC
+        onClick={handlerClick}
+        onMouseMove={fCardRotate}
+        onMouseLeave={CardMouseLive}>
+        <CardPerspectiveSC
+          onMouseMove={fCardRotate}
+          onMouseLeave={CardMouseLive}>
+          <ImageSC src={img} />
+        </CardPerspectiveSC>
+      </CardWrapperSC>
+      {isFullView && <FullView active={isFullView} setActive={handlerClick} />}
+    </>
   );
 };
 

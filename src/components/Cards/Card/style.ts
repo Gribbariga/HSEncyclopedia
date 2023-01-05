@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 const CardWrapperSC = styled("div")`
+  cursor: pointer;
   transition: all 0.5s;
   width: 20%;
   transform: perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1);
