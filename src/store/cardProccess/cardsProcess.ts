@@ -12,6 +12,7 @@ export interface IInitialState {
   pageCount: number | null;
   error: boolean;
   loading: boolean;
+  endCard: boolean;
 }
 
 const initialState: IInitialState = {
@@ -22,6 +23,7 @@ const initialState: IInitialState = {
   pageCount: null,
   error: false,
   loading: false,
+  endCard: false,
 };
 
 const AppCards = createSlice({
@@ -35,11 +37,15 @@ const AppCards = createSlice({
       state.error = false;
     });
     builder.addCase(fetchCards.fulfilled, (state, action) => {
-      state.cardCount = action.payload.cardCount;
-      state.pageCount = action.payload.pageCount;
-      state.page = action.payload.page;
-      state.cards = action.payload.cards;
+      const payload = action.payload;
+      state.cardCount = payload.cardCount;
+      state.pageCount = payload.pageCount;
+      state.page = payload.page;
+      state.cards = payload.cards;
       state.loading = false;
+      if (payload.cards.length < state.limit) {
+        state.endCard = true;
+      }
     });
     builder.addCase(fetchCards.rejected, (state) => {
       state.error = true;
@@ -52,6 +58,9 @@ const AppCards = createSlice({
       state.page += 1;
       state.cards = [...state.cards, ...action.payload.cards];
       state.loading = false;
+      if (action.payload.cards.length < state.limit) {
+        state.endCard = true;
+      }
     });
     builder.addCase(addLoadingCards.rejected, (state) => {
       state.error = true;

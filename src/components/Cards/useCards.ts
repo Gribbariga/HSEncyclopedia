@@ -1,6 +1,6 @@
 import { getCookiesByName } from "@/lib/service/service";
 import { BlizzardAxios } from "@/lib/http/BlizzAxios";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/hooks/state";
 import {
   addLoadingCards,
@@ -9,7 +9,6 @@ import {
 import { ICards } from "@/lib/models/cardsModel";
 
 export const useCards = () => {
-  // const [cards, setCards] = useState<ICards[]>([]);
   const dispatch = useAppDispatch();
   enum Class {
     "Мертвый рыцарь" = 1,
@@ -27,23 +26,24 @@ export const useCards = () => {
     lenght = 12,
   }
   const cards = useAppSelector((state) => state.Cards.cards);
+  const endCards = useAppSelector((state) => state.Cards.endCard);
   const sort = () => {};
-  const throttle = (callee: () => void, timeout: number) => {
-    let timer = null;
+  const throttle = useCallback((callee: () => void, timeout: number) => {
+    let timer: NodeJS.Timeout | null;
 
     return function perform() {
       if (timer) return;
 
       timer = setTimeout(() => {
         callee();
-
-        clearTimeout(timer);
-        timer = null;
+        if (timer) {
+          clearTimeout(timer);
+          timer = null;
+        }
       }, timeout);
     };
-  };
-  const checkPosition = () => {
-    console.log(1);
+  }, []);
+  const checkPosition = useCallback(() => {
     const height = document.body.offsetHeight;
     const screenHeight = window.innerHeight;
 
@@ -53,11 +53,12 @@ export const useCards = () => {
 
     const position = scrolled + screenHeight;
 
-    if (position >= threshold) {
-      console.log("good");
-      addCards();
+    if (position >= threshold - 8000) {
+      if (!endCards) {
+        addCards();
+      }
     }
-  };
+  }, [endCards]);
   const getCards = async () => {
     dispatch(fetchCards({}));
   };
@@ -65,12 +66,10 @@ export const useCards = () => {
     dispatch(addLoadingCards({}));
   };
   useEffect(() => {
-    document.addEventListener("scroll", throttle(checkPosition, 250));
+    document.addEventListener("scroll", throttle(checkPosition, 1000));
+  }, [checkPosition, throttle]);
+  useEffect(() => {
     getCards();
-    console.log(2);
-    // console.log(selector);
-    // const a = useAppSelector((state) => state.Cards.cards);
-    // setCards();
   }, []);
 
   return {

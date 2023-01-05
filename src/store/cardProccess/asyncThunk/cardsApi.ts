@@ -29,29 +29,30 @@ interface IFetchCards {
 
 const baseURL = `cards?locale=ru_RU&access_token=`;
 
-export const fetchCards = createAsyncThunk<ICardsModel, IFetchCards>(
-  "cards/",
-  async () => {
-    const sort = "manaCost:asc,name:asc,classes:asc,groupByClass:asc";
-    const res = await BlizzardAxios.get(
-      `${baseURL}${getCookiesByName(
-        "token",
-      )}&page=1&class=all&pageSize=250&set=standard&sort=${sort}`,
-    );
-    return await res.data;
-  },
-);
+export const fetchCards = createAsyncThunk<
+  ICardsModel,
+  IFetchCards,
+  { state: StateType }
+>("cards/", async ({}, { getState }) => {
+  const { limit } = getState().Cards;
+  const sort = "manaCost:asc,name:asc,classes:asc,groupByClass:asc";
+  const res = await BlizzardAxios.get(
+    `${baseURL}${getCookiesByName(
+      "token",
+    )}&page=1&class=all&pageSize=${limit}&set=standard&sort=${sort}`,
+  );
+  return await res.data;
+});
 
 export const addLoadingCards = createAsyncThunk<
   ICardsModel,
   IFetchCards,
   { state: StateType }
 >("cards/add", async ({}, { getState }) => {
-  const { page } = getState().Cards;
-  console.log(page);
-  console.log(getState(), "api");
+  const { page, limit } = getState().Cards;
+
   const res = await BlizzardAxios.get(
-    `${baseURL}${getCookiesByName("token")}&page=${page}`,
+    `${baseURL}${getCookiesByName("token")}&page=${page}&pageSize=${limit}`,
   );
   return await res.data;
 });

@@ -3,9 +3,9 @@ export const useCard = () => {
     const currentTarget = event.currentTarget;
     const nativeEvent = event.nativeEvent;
     currentTarget.style.transform = `perspective(2000px) scale(1.1) rotatey(${
-      (nativeEvent.offsetX - currentTarget.offsetWidth / 2) / 6
+      (nativeEvent.offsetX - currentTarget.offsetWidth / 2) / 8
     }deg) rotatex(${
-      ((nativeEvent.offsetY - currentTarget.offsetHeight / 2) / 6) * -1
+      ((nativeEvent.offsetY - currentTarget.offsetHeight / 2) / 8) * -1
     }deg)`;
   };
   const CardMouseLive = (event: React.MouseEvent<HTMLDivElement>) => {

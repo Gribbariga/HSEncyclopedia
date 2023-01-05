@@ -10,11 +10,13 @@ const Card: FC<ICard> = ({ img }) => {
   const { CardMouseLive, fCardRotate } = useCard();
   return (
     <CardWrapperSC onMouseMove={fCardRotate} onMouseLeave={CardMouseLive}>
-      <ImageSC src={img} />
+      <CardPerspectiveSC onMouseMove={fCardRotate} onMouseLeave={CardMouseLive}>
+        <ImageSC src={img} />
+      </CardPerspectiveSC>
     </CardWrapperSC>
   );
 };
 
-const { CardWrapperSC, ImageSC } = useCardStyle();
+const { ImageSC, CardWrapperSC, CardPerspectiveSC } = useCardStyle();
 
 export default memo(Card);
