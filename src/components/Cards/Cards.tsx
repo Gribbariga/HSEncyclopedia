@@ -13,7 +13,7 @@ const Cards = () => {
       <ContainerSC>
         <ListSC>
           {cards.map((item) => {
-            return <Card key={item.id} img={item.image} />;
+            return <Card key={item.id} card={item} />;
           })}
         </ListSC>
       </ContainerSC>
