@@ -53,7 +53,10 @@ const DescriptionSC = styled("p")`
   margin-bottom: 10px;
 `;
 
-const CardEffectSC = styled("p")``;
+const CardEffectSC = styled("p")`
+  color: #ffffff;
+  margin-bottom: 10px;
+`;
 
 const InfoListSC = styled("ul")``;
 

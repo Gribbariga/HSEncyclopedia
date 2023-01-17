@@ -66,7 +66,11 @@ export const useCards = () => {
     dispatch(addLoadingCards({}));
   };
   useEffect(() => {
-    document.addEventListener("scroll", throttle(checkPosition, 1000));
+    const infinityScroll = throttle(checkPosition, 1000);
+    document.addEventListener("scroll", infinityScroll);
+    return () => {
+      document.removeEventListener("scroll", infinityScroll);
+    };
   }, [checkPosition, throttle]);
   useEffect(() => {
     getCards();

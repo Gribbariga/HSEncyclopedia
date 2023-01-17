@@ -1,3 +1,5 @@
+import { StringLiteral } from "typescript";
+
 export interface ISets {
   id: number;
   name: string;
@@ -49,4 +51,53 @@ export interface IMinionTypes {
   id: number;
   name: string;
   gameModes: number[];
+}
+
+export interface IGameMode {
+  slug: string;
+  id: number;
+  name: string;
+}
+
+export interface ISpellSchools {
+  slug: string;
+  id: number;
+  name: string;
+}
+
+export interface IMercenaryRoles {
+  slug: string;
+  id: number;
+  name: string;
+}
+
+export interface IKeywords {
+  id: number;
+  slug: string;
+  name: string;
+  refText: string;
+  text: string;
+  gameModes: number[];
+}
+
+export interface ICardBackCategories {
+  slug: string;
+  id: number;
+  name: string;
+}
+
+export interface IAllMeta {
+  sets: ISets[];
+  setGroups: ISetGroups[];
+  gameModes: IGameMode[];
+  arenaIds: number[];
+  types: ITypes[];
+  rarities: IRarities[];
+  classes: IClasses[];
+  minionTypes: IMinionTypes[];
+  spellSchools: ISpellSchools[];
+  keywords: IKeywords[];
+  filterableFields: string[];
+  numericFields: string[];
+  cardBackCategories: ICardBackCategories[];
 }

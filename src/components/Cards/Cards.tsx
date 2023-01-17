@@ -7,7 +7,6 @@ import { useCards } from "./useCards";
 
 const Cards = () => {
   const { cards } = useCards();
-  console.log(cards);
   return (
     <CardsBackgroundSC>
       <ContainerSC>

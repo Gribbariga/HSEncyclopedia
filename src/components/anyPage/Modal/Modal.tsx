@@ -10,7 +10,6 @@ interface IModal {
 }
 
 const Modal: FC<IModal> = ({ children, active, setActive }) => {
-  console.log(children);
   const { handlerCloseModal } = useModal(setActive);
   return (
     <OverlaySC isActive={active} onClick={handlerCloseModal}>
