@@ -24,10 +24,10 @@ const LogoSC = styled("img")`
 const NavMenuSC = styled("nav")`
   height: 100%;
   display: flex;
-  max-width: 700px;
-  width: 100%;
   justify-content: space-between;
   align-items: center;
+  max-width: 700px;
+  width: 100%;
 `;
 
 const LinkNavSC = styled("li")`
@@ -38,6 +38,7 @@ const LinkNavSC = styled("li")`
   color: #fcd144;
   height: 100%;
   font-size: 20px;
+  padding: 30px;
   & > div {
     opacity: 0;
     visibility: hidden;

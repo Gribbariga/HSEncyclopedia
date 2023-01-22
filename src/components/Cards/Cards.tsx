@@ -39,9 +39,7 @@ const Cards = () => {
                       card={item}
                       index={i}
                     />
-                    <ClassTitle style={{ width: "100%" }}>
-                      {title?.name}
-                    </ClassTitle>
+                    <ClassTitle>{title?.name}</ClassTitle>
                   </>
                 );
               }

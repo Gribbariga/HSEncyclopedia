@@ -12,6 +12,10 @@ const ListSC = styled("div")`
 `;
 const ClassTitle = styled("h2")`
   margin: 0 auto;
+  text-align: center;
+  width: 100%;
+  margin: 20px 0 20px 0;
+  font-size: 35px;
 `;
 
 export const useCardsStyle = () => ({

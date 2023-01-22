@@ -13,10 +13,16 @@ interface IFullView {
 }
 
 const FullView: FC<IFullView> = ({ isActive, cardIndex, setActive }) => {
-  const { handlerNextCard, handlerClose, card } = useFullView(
-    cardIndex,
-    setActive,
-  );
+  const {
+    cardClass,
+    cardSets,
+    cardType,
+    rare,
+    card,
+    handlerClose,
+    handlerNextCard,
+  } = useFullView(cardIndex, setActive, isActive);
+  console.log(cardSets);
   return (
     <Modal isActive={isActive} setActive={handlerClose()}>
       {isActive && (
@@ -40,30 +46,36 @@ const FullView: FC<IFullView> = ({ isActive, cardIndex, setActive }) => {
             <CardEffectSC>{card.text}</CardEffectSC>
             <ListItemSC>
               <ListItemSC>
-                <span>Тип:</span>
+                <span>Тип: {cardType?.name}</span>
               </ListItemSC>
-              {/* <ListItemSC>
-              <span>Редкость: </span>
-              {cardIndo?.rare}
-            </ListItemSC>
-            <ListItemSC>
-              <span>Набор:</span>
-            </ListItemSC>
-            <ListItemSC>
-              <span>Класс:</span>
-            </ListItemSC>
-            <ListItemSC>
-              <span>Стоймость изготовления: </span>
-              {cardIndo?.production} (Золотые)
-            </ListItemSC>
-            <ListItemSC>
-              <span>Кол-во пыли при распылении: </span>
-              {cardIndo?.spraying} (Золотые)
-            </ListItemSC>
-            <ListItemSC>
-              <span>Художник: </span>
-              {card.artistName}
-            </ListItemSC> */}
+              <ListItemSC>
+                <span>Редкость: {rare?.name} </span>
+              </ListItemSC>
+              <ListItemSC>
+                <span>Набор: {cardSets?.name}</span>
+              </ListItemSC>
+              <ListItemSC>
+                <span>Класс: {cardClass?.name}</span>
+              </ListItemSC>
+              <ListItemSC>
+                <span>
+                  Стоймость изготовления: {rare?.craftingCost[0]} /{" "}
+                  {rare?.craftingCost[1]} (Золотые){" "}
+                </span>
+              </ListItemSC>
+              {rare?.dustValue && (
+                <ListItemSC>
+                  <span>
+                    Кол-во пыли при распылении: {rare?.dustValue[0]} /{" "}
+                    {rare?.dustValue[1]} (Золотые)
+                  </span>
+                </ListItemSC>
+              )}
+
+              <ListItemSC>
+                <span>Художник: </span>
+                {card.artistName}
+              </ListItemSC>
               <ListItemSC></ListItemSC>
             </ListItemSC>
           </RightSizeSC>
