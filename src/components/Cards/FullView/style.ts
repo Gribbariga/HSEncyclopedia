@@ -6,6 +6,7 @@ const WrapperSC = styled("div")`
   padding: 30px;
   display: flex;
   justify-content: space-between;
+  position: relative;
 `;
 
 const CardWrapperSC = styled("div")`
@@ -68,15 +69,31 @@ const ListItemSC = styled("li")`
   }
 `;
 
+const ArrowWrapperSC = styled("div")<{ side: "left" | "right" }>`
+  ${({ side }) => side}: -150px;
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  cursor: pointer;
+  top: 50%;
+  transform: translateY(-50%);
+`;
+
+const ArrowImgSC = styled("img")<{ isTransform?: boolean }>`
+  ${({ isTransform }) => (isTransform ? "transform: rotate(180deg)" : "")}
+`;
+
 export const useFullViewStyle = () => ({
   ImageSC,
   TitleSC,
   WrapperSC,
   InfoListSC,
   ListItemSC,
+  ArrowImgSC,
   RightSizeSC,
   CardEffectSC,
   CardWrapperSC,
   DescriptionSC,
+  ArrowWrapperSC,
   CardPerspectiveSC,
 });

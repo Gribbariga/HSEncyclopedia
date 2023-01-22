@@ -52,7 +52,9 @@ export const addLoadingCards = createAsyncThunk<
   const { page, limit } = getState().Cards;
 
   const res = await BlizzardAxios.get(
-    `${baseURL}${getCookiesByName("token")}&page=${page}&pageSize=${limit}`,
+    `${baseURL}${getCookiesByName(
+      "token",
+    )}&page=${page}&pageSize=${limit}&sort=groupByClass:asc`,
   );
   return await res.data;
 });

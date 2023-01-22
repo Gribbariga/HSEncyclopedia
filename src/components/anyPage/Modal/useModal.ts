@@ -1,6 +1,6 @@
-export const useModal = (useActive: (state: boolean) => void) => {
+export const useModal = (useActive: () => void) => {
   const handlerCloseModal = () => {
-    useActive(false);
+    useActive();
   };
 
   return {

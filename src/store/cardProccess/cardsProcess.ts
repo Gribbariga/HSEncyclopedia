@@ -40,7 +40,7 @@ const AppCards = createSlice({
       const payload = action.payload;
       state.cardCount = payload.cardCount;
       state.pageCount = payload.pageCount;
-      state.page = payload.page;
+      state.page = payload.page + 1;
       state.cards = payload.cards;
       state.loading = false;
       if (payload.cards.length < state.limit) {
@@ -55,6 +55,7 @@ const AppCards = createSlice({
       state.loading = true;
     });
     builder.addCase(addLoadingCards.fulfilled, (state, action) => {
+      console.log(state.page, "loading");
       state.page += 1;
       state.cards = [...state.cards, ...action.payload.cards];
       state.loading = false;

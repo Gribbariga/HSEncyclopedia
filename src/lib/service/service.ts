@@ -22,3 +22,40 @@ export const fCardRotate = (event: React.MouseEvent<HTMLDivElement>) => {
     ((nativeEvent.offsetY - currentTarget.offsetHeight / 2) / 8) * -1
   }deg)`;
 };
+
+export const throttle = (callee: () => void, timeout: number) => {
+  let timer: NodeJS.Timeout | null;
+
+  return function perform() {
+    if (timer) return;
+
+    timer = setTimeout(() => {
+      callee();
+      if (timer) {
+        clearTimeout(timer);
+        timer = null;
+      }
+    }, timeout);
+  };
+};
+
+export const checkPosition = (
+  offset: number,
+  blocking: boolean,
+  action: () => void,
+) => {
+  const height = document.body.offsetHeight;
+  const screenHeight = window.innerHeight;
+
+  const scrolled = window.scrollY;
+
+  const threshold = height - screenHeight / 4;
+
+  const position = scrolled + screenHeight;
+
+  if (position >= threshold - offset) {
+    if (!blocking) {
+      action();
+    }
+  }
+};

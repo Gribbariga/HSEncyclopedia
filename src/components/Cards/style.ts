@@ -9,10 +9,13 @@ const CardsBackgroundSC = styled("div")`
 const ListSC = styled("div")`
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+`;
+const ClassTitle = styled("h2")`
+  margin: 0 auto;
 `;
 
 export const useCardsStyle = () => ({
   ListSC,
+  ClassTitle,
   CardsBackgroundSC,
 });

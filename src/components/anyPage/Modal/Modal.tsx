@@ -5,14 +5,14 @@ import { useModal } from "./useModal";
 
 interface IModal {
   children?: React.ReactNode;
-  active: boolean;
+  isActive: boolean;
   setActive: () => void;
 }
 
-const Modal: FC<IModal> = ({ children, active, setActive }) => {
+const Modal: FC<IModal> = ({ children, isActive, setActive }) => {
   const { handlerCloseModal } = useModal(setActive);
   return (
-    <OverlaySC isActive={active} onClick={handlerCloseModal}>
+    <OverlaySC isActive={isActive} onClick={handlerCloseModal}>
       {children}
     </OverlaySC>
   );

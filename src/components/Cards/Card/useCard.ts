@@ -1,11 +1,9 @@
 import { useState } from "react";
 
-export const useCard = () => {
-  const [isFullView, setIsFullView] = useState(false);
-
-  const handlerClick = () => {
-    setIsFullView((prev) => !prev);
+export const useCard = (openFullView: (index: number | null) => void) => {
+  const handlerFullView = (index: number | null) => {
+    return () => openFullView(index);
   };
 
-  return { handlerClick, isFullView };
+  return { handlerFullView };
 };
