@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/hooks/state";
 import {
   addLoadingCards,
+  fetchBGCards,
   fetchCards,
 } from "@/store/cardProccess/asyncThunk/cardsApi";
 import { ICards } from "@/lib/models/cardsModel";
@@ -14,9 +15,9 @@ interface IFullViewState {
 interface IResultCard extends ICards {
   isEndCards?: boolean;
 }
-export const useCards = () => {
+export const useCards = (gameMode: "standard" | "bg" | "mercenary") => {
   const dispatch = useAppDispatch();
-  const { cards, endCard } = useAppSelector((state) => state.Cards);
+  const { cards, endCard, loading } = useAppSelector((state) => state.Cards);
   const classes = useAppSelector((state) => state.Meta.allMeta?.classes);
   const [fullView, setFullView] = useState<IFullViewState>({
     isActive: false,
@@ -35,17 +36,52 @@ export const useCards = () => {
     return result;
   };
   const currentCard = sort();
-  console.log(currentCard);
   const getCards = async () => {
-    dispatch(fetchCards({}));
+    console.log(gameMode);
+    switch (gameMode) {
+      case "standard": {
+        dispatch(fetchCards({}));
+        break;
+      }
+      case "bg": {
+        dispatch(fetchBGCards({}));
+        break;
+      }
+      case "mercenary": {
+        break;
+      }
+      default: {
+        console.log(gameMode === "bg");
+        dispatch(fetchCards({}));
+      }
+    }
   };
   const addCards = async () => {
-    dispatch(addLoadingCards({}));
+    console.log(gameMode);
+    switch (gameMode) {
+      case "standard": {
+        console.log(2);
+        dispatch(addLoadingCards({}));
+        break;
+      }
+      case "bg": {
+        console.log(1);
+        dispatch(fetchBGCards({}));
+        break;
+      }
+      case "mercenary": {
+        break;
+      }
+      default: {
+        console.log(2);
+        dispatch(fetchCards({}));
+      }
+    }
   };
 
   useEffect(() => {
     const infinityScroll = throttle(
-      () => checkPosition(8000, endCard, addCards),
+      () => checkPosition(3000, endCard, addCards),
       1000,
     );
     document.addEventListener("scroll", infinityScroll);
@@ -54,6 +90,7 @@ export const useCards = () => {
     };
   }, [checkPosition, throttle]);
   useEffect(() => {
+    console.log(gameMode);
     getCards();
   }, []);
 
@@ -64,6 +101,7 @@ export const useCards = () => {
   return {
     cards,
     classes,
+    loading,
     fullView,
     currentCard,
     handlerClick,

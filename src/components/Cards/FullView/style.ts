@@ -57,15 +57,8 @@ const DescriptionSC = styled("p")`
 const CardEffectSC = styled("p")`
   color: #ffffff;
   margin-bottom: 10px;
-`;
-
-const InfoListSC = styled("ul")``;
-
-const ListItemSC = styled("li")`
-  color: #ffffff;
-  margin-bottom: 5px;
-  & > span {
-    color: #ffe5ac;
+  & > b {
+    color: #f7d057;
   }
 `;
 
@@ -87,8 +80,6 @@ export const useFullViewStyle = () => ({
   ImageSC,
   TitleSC,
   WrapperSC,
-  InfoListSC,
-  ListItemSC,
   ArrowImgSC,
   RightSizeSC,
   CardEffectSC,

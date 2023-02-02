@@ -1,12 +1,14 @@
 export const getCookiesByName = (name: string) => {
-  let matches = document.cookie.match(
-    new RegExp(
-      "(?:^|; )" +
-        name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, "\\$1") +
-        "=([^;]*)",
-    ),
-  );
-  return matches ? decodeURIComponent(matches[1]) : undefined;
+  if (typeof window !== "undefined") {
+    let matches = document.cookie.match(
+      new RegExp(
+        "(?:^|; )" +
+          name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, "\\$1") +
+          "=([^;]*)",
+      ),
+    );
+    return matches ? decodeURIComponent(matches[1]) : undefined;
+  }
 };
 
 export const mouseLive = (event: React.MouseEvent<HTMLDivElement>) => {

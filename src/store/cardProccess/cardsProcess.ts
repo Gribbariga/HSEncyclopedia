@@ -2,7 +2,11 @@ import { NameSpacesStore } from "@/lib/constants/store";
 import { ICards } from "@/lib/models/cardsModel";
 import { StateType } from "@/types/store/state";
 import { createSlice } from "@reduxjs/toolkit";
-import { addLoadingCards, fetchCards } from "./asyncThunk/cardsApi";
+import {
+  addLoadingCards,
+  fetchBGCards,
+  fetchCards,
+} from "./asyncThunk/cardsApi";
 
 export interface IInitialState {
   cards: ICards[];
@@ -29,15 +33,22 @@ const initialState: IInitialState = {
 const AppCards = createSlice({
   name: "cards",
   initialState,
-  reducers: {},
+  reducers: {
+    resetCard(state) {
+      state.cards = [];
+      state.page = 1;
+      state.cardCount = null;
+      state.pageCount = null;
+      state.endCard = false;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(fetchCards.pending, (state) => {
       state.cards = [];
       state.loading = true;
       state.error = false;
     });
-    builder.addCase(fetchCards.fulfilled, (state, action) => {
-      const payload = action.payload;
+    builder.addCase(fetchCards.fulfilled, (state, { payload }) => {
       state.cardCount = payload.cardCount;
       state.pageCount = payload.pageCount;
       state.page = payload.page + 1;
@@ -54,18 +65,29 @@ const AppCards = createSlice({
     builder.addCase(addLoadingCards.pending, (state) => {
       state.loading = true;
     });
-    builder.addCase(addLoadingCards.fulfilled, (state, action) => {
+    builder.addCase(addLoadingCards.fulfilled, (state, { payload }) => {
       console.log(state.page, "loading");
       state.page += 1;
-      state.cards = [...state.cards, ...action.payload.cards];
+      state.cards = [...state.cards, ...payload.cards];
       state.loading = false;
-      if (action.payload.cards.length < state.limit) {
+      if (payload.cards.length < state.limit) {
         state.endCard = true;
       }
     });
     builder.addCase(addLoadingCards.rejected, (state) => {
       state.error = true;
       state.loading = false;
+    });
+    builder.addCase(fetchBGCards.pending, (state) => {
+      state.loading = true;
+      state.error = false;
+      state.cards = [];
+    });
+    builder.addCase(fetchBGCards.fulfilled, (state, { payload }) => {
+      state.cards = payload.cards;
+      state.cardCount = payload.cardCount;
+      state.pageCount = payload.pageCount;
+      state.page += 1;
     });
   },
 });

@@ -3,6 +3,16 @@ interface IDuels {
   constructed: boolean;
 }
 
+interface IBattlegrounds {
+  tier: number;
+  hero: boolean;
+  quest: boolean;
+  reward: boolean;
+  upgradeId: number;
+  image: string;
+  goldImage: string;
+}
+
 export interface ICards {
   id: number;
   collectible: number;
@@ -28,6 +38,7 @@ export interface ICards {
   keywordIds?: number[];
   duels?: IDuels;
   copyOfCardId?: number;
+  Battlegrounds?: IBattlegrounds;
 }
 
 export interface ICardsModel {
