@@ -3,6 +3,7 @@ import { ICards } from "@/lib/models/cardsModel";
 import { StateType } from "@/types/store/state";
 import { createSlice } from "@reduxjs/toolkit";
 import {
+  addLoadingBGCards,
   addLoadingCards,
   fetchBGCards,
   fetchCards,
@@ -66,7 +67,6 @@ const AppCards = createSlice({
       state.loading = true;
     });
     builder.addCase(addLoadingCards.fulfilled, (state, { payload }) => {
-      console.log(state.page, "loading");
       state.page += 1;
       state.cards = [...state.cards, ...payload.cards];
       state.loading = false;
@@ -88,6 +88,22 @@ const AppCards = createSlice({
       state.cardCount = payload.cardCount;
       state.pageCount = payload.pageCount;
       state.page += 1;
+      state.loading = false;
+    });
+    builder.addCase(fetchBGCards.rejected, (state) => {
+      state.error = true;
+      state.loading = false;
+    });
+    builder.addCase(addLoadingBGCards.pending, (state) => {
+      state.loading = true;
+      state.error = false;
+    });
+    builder.addCase(addLoadingBGCards.fulfilled, (state, { payload }) => {
+      state.cards = [...state.cards, ...payload.cards];
+      state.page += 1;
+      if (payload.cards.length < state.limit) {
+        state.endCard = true;
+      }
     });
   },
 });

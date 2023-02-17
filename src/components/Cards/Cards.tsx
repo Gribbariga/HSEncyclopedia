@@ -20,55 +20,58 @@ const Cards: FC<ICardsProps> = ({ gameMode }) => {
       <CardsBackgroundSC>
         <ContainerSC>
           <ListSC>
-            {currentCard.map((item, i, arr) => {
-              if (i == 0) {
-                let title: IClasses | undefined;
-                if (classes) {
-                  title = classes.find(
-                    (item) => item.id === arr[i + 1].classId,
-                  );
-                }
-                return (
-                  <>
-                    <ClassTitle key={title?.name}>{title?.name}</ClassTitle>
-                    <Card
-                      openFullView={handlerClick}
-                      key={item.id}
-                      card={item}
-                      index={i}
-                    />
-                  </>
-                );
-              }
-              if (!item.isEndCards) {
-                return (
+            <>
+              {currentCard[0] && (
+                <>
+                  <ClassTitle>{currentCard[0].title}</ClassTitle>
                   <Card
                     openFullView={handlerClick}
-                    key={item.id}
-                    card={item}
-                    index={i}
+                    card={currentCard[0]}
+                    index={0}
+                    gameMode={gameMode}
                   />
-                );
-              } else {
-                let title: IClasses | undefined;
-                if (classes) {
-                  title = classes.find(
-                    (item) => item.id === arr[i + 1].classId,
-                  );
-                }
-                return (
-                  <>
-                    <Card
-                      openFullView={handlerClick}
-                      key={item.id}
-                      card={item}
-                      index={i}
-                    />
-                    <ClassTitle key={title?.name}>{title?.name}</ClassTitle>
-                  </>
-                );
-              }
-            })}
+                  {currentCard.map((item, i, arr) => {
+                    if (i !== 0) {
+                      if (item.title !== arr[i - 1].title) {
+                        return (
+                          <>
+                            <ClassTitle key={item.title}>
+                              {item.title}
+                            </ClassTitle>
+                            <Card
+                              openFullView={handlerClick}
+                              key={item.id}
+                              card={item}
+                              index={i}
+                              gameMode={gameMode}
+                            />
+                          </>
+                        );
+                      } else {
+                        return (
+                          <Card
+                            openFullView={handlerClick}
+                            key={item.id}
+                            card={item}
+                            index={i}
+                            gameMode={gameMode}
+                          />
+                        );
+                      }
+                    }
+                    // if (i == 0 && i < arr.length) {
+                    //   if (item.title !== arr[i + 1].title) {
+                    //     let title: string | undefined;
+                    //     if (classes) {
+                    //       title = item.title;
+                    //     }
+
+                    //   }
+                    // }
+                  })}
+                </>
+              )}
+            </>
           </ListSC>
           {loading && <Spinner />}
         </ContainerSC>

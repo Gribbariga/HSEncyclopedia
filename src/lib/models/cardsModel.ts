@@ -38,7 +38,7 @@ export interface ICards {
   keywordIds?: number[];
   duels?: IDuels;
   copyOfCardId?: number;
-  Battlegrounds?: IBattlegrounds;
+  battlegrounds?: IBattlegrounds;
 }
 
 export interface ICardsModel {

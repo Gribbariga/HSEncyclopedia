@@ -2,6 +2,7 @@ import { checkPosition, throttle } from "@/lib/service/service";
 import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/hooks/state";
 import {
+  addLoadingBGCards,
   addLoadingCards,
   fetchBGCards,
   fetchCards,
@@ -13,7 +14,7 @@ interface IFullViewState {
   index: number | null;
 }
 interface IResultCard extends ICards {
-  isEndCards?: boolean;
+  title?: string;
 }
 export const useCards = (gameMode: "standard" | "bg" | "mercenary") => {
   const dispatch = useAppDispatch();
@@ -24,18 +25,40 @@ export const useCards = (gameMode: "standard" | "bg" | "mercenary") => {
     index: null,
   });
 
-  const sort = () => {
+  const titleAdd = () => {
     let result: IResultCard[] = [];
-    for (let i = 0; i < cards.length; i++) {
-      if (i !== cards.length - 1 && cards[i].classId !== cards[i + 1].classId) {
-        result.push({ ...cards[i], isEndCards: true });
-      } else {
-        result.push(cards[i]);
+    switch (gameMode) {
+      case "standard": {
+        for (let i = 0; i < cards.length; i++) {
+          const title = classes?.find(
+            (item) => item.id === cards[i].classId,
+          )?.name;
+          result.push({ ...cards[i], title });
+        }
+        return result;
+      }
+      case "bg": {
+        console.log(cards);
+        for (let i = 0; i < cards.length; i++) {
+          console.log(cards[i].battlegrounds);
+          if (cards[i].battlegrounds?.hero) {
+            result.push({ ...cards[i], title: "Герои" });
+          } else if (cards[i].battlegrounds?.tier) {
+            result.push({
+              ...cards[i],
+              title: `Тир ${cards[i].battlegrounds?.tier}`,
+            });
+          }
+        }
+        console.log(result);
+        return result;
+      }
+      case "mercenary": {
+        return result;
       }
     }
-    return result;
   };
-  const currentCard = sort();
+  const currentCard = titleAdd();
   const getCards = async () => {
     console.log(gameMode);
     switch (gameMode) {
@@ -66,7 +89,7 @@ export const useCards = (gameMode: "standard" | "bg" | "mercenary") => {
       }
       case "bg": {
         console.log(1);
-        dispatch(fetchBGCards({}));
+        dispatch(addLoadingBGCards({}));
         break;
       }
       case "mercenary": {

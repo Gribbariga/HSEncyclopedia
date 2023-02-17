@@ -8,14 +8,16 @@ import { useCard } from "./useCard";
 interface ICard {
   card: ICards;
   index: number;
+  gameMode: "standard" | "bg" | "mercenary";
   openFullView: (index: number | null) => void;
 }
 
-const Card: FC<ICard> = ({ card, index, openFullView }) => {
+const Card: FC<ICard> = ({ card, index, gameMode, openFullView }) => {
   const { handlerFullView } = useCard(openFullView);
   return (
     <>
       <CardWrapperSC
+        gameMode={gameMode}
         onClick={handlerFullView(index)}
         onMouseMove={fCardRotate}
         onMouseLeave={mouseLive}>

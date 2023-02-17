@@ -59,9 +59,10 @@ export const fetchBGCards = createAsyncThunk<
   IFetchCards,
   { state: StateType }
 >("BGcards/", async ({}, { getState }) => {
-  const sort = "gameMode=battlegrounds";
-
-  const res = await BlizzardAxios.get(`${baseURL}&${sort}`);
+  const sort = "tier:asc;name:asc";
+  const res = await BlizzardAxios.get(
+    `${baseURL}&gameMode=battlegrounds&sort=${sort}`,
+  );
 
   return res.data;
 });

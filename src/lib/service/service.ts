@@ -18,7 +18,7 @@ export const mouseLive = (event: React.MouseEvent<HTMLDivElement>) => {
 export const fCardRotate = (event: React.MouseEvent<HTMLDivElement>) => {
   const currentTarget = event.currentTarget;
   const nativeEvent = event.nativeEvent;
-  currentTarget.style.transform = `perspective(2000px) scale(1.1) rotatey(${
+  currentTarget.style.transform = `perspective(2000px) scale(1.035) rotatey(${
     (nativeEvent.offsetX - currentTarget.offsetWidth / 2) / 8
   }deg) rotatex(${
     ((nativeEvent.offsetY - currentTarget.offsetHeight / 2) / 8) * -1

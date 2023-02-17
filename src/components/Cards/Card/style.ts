@@ -1,10 +1,12 @@
 import styled from "styled-components";
 
-const CardWrapperSC = styled("div")`
+const CardWrapperSC = styled("div")<{
+  gameMode: "standard" | "bg" | "mercenary";
+}>`
   cursor: pointer;
   transition: all 0.5s;
-  width: 20%;
-
+  width: ${({ gameMode }) => (gameMode === "standard" ? "20%" : "15%")};
+  ${({ gameMode }) => gameMode === "bg" && "margin-right:15px"};
   transform: perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1);
   &:hover {
     transform: scale(1.035, 1.035, 1.035);

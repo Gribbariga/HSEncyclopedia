@@ -9,6 +9,7 @@ const CardsBackgroundSC = styled("div")`
 const ListSC = styled("div")`
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 `;
 const ClassTitle = styled("h2")`
   position: relative;

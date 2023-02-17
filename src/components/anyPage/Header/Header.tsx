@@ -16,8 +16,12 @@ const Header = () => {
             <LinkNavSC>
               Карты
               <NavListSC>
-                <NavListLinkSC href={"/cards"}>Библиотека</NavListLinkSC>
-                <NavListLinkSC href={"/"}>Поля Сражений</NavListLinkSC>
+                <NavListLinkSC href={"/cards/standart"}>
+                  Библиотека
+                </NavListLinkSC>
+                <NavListLinkSC href={"/cards/battlegrounds"}>
+                  Поля Сражений
+                </NavListLinkSC>
                 <NavListLinkSC href={"/"}>Наемники</NavListLinkSC>
                 <NavListLinkSC href={"/"}>Наемники</NavListLinkSC>
                 <NavListLinkSC href={"/"}>Наемники</NavListLinkSC>
