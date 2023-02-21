@@ -10,7 +10,7 @@ interface IBattlegrounds {
   reward: boolean;
   upgradeId: number;
   image: string;
-  goldImage: string;
+  imageGold: string;
 }
 
 interface IMercenary {
@@ -48,6 +48,7 @@ export interface ICards {
   childIds: number[];
   keywordIds?: number[];
   duels?: IDuels;
+  minionTypeId?: number;
   copyOfCardId?: number;
   battlegrounds?: IBattlegrounds;
   mercenaryHero?: IMercenary;
