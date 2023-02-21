@@ -12,25 +12,35 @@ const InfoList: FC<IInfoListProps> = ({ card }) => {
   return (
     <>
       <InfoListSC>
-        <ListItemSC>
-          <span>Тип: {cardType?.name}</span>
-        </ListItemSC>
-        <ListItemSC>
-          <span>Редкость: {rare?.name} </span>
-        </ListItemSC>
-        <ListItemSC>
-          <span>Набор: {cardSets?.name}</span>
-        </ListItemSC>
-        <ListItemSC>
-          <span>Класс: {cardClass?.name}</span>
-        </ListItemSC>
-        <ListItemSC>
-          <span>
-            Стоймость изготовления: {rare?.craftingCost[0]} /{" "}
-            {rare?.craftingCost[1]} (Золотые){" "}
-          </span>
-        </ListItemSC>
-        {rare?.dustValue && (
+        {cardType?.name && (
+          <ListItemSC>
+            <span>Тип: {cardType?.name}</span>
+          </ListItemSC>
+        )}
+        {rare?.name && (
+          <ListItemSC>
+            <span>Редкость: {rare?.name} </span>
+          </ListItemSC>
+        )}
+        {cardSets?.name && (
+          <ListItemSC>
+            <span>Набор: {cardSets?.name}</span>
+          </ListItemSC>
+        )}
+        {cardClass?.name && (
+          <ListItemSC>
+            <span>Класс: {cardClass?.name}</span>
+          </ListItemSC>
+        )}
+        {rare?.craftingCost[0] && (
+          <ListItemSC>
+            <span>
+              Стоймость изготовления: {rare?.craftingCost[0]} /{" "}
+              {rare?.craftingCost[1]} (Золотые){" "}
+            </span>
+          </ListItemSC>
+        )}
+        {rare?.dustValue[0] && (
           <ListItemSC>
             <span>
               Кол-во пыли при распылении: {rare?.dustValue[0]} /{" "}
@@ -38,11 +48,12 @@ const InfoList: FC<IInfoListProps> = ({ card }) => {
             </span>
           </ListItemSC>
         )}
-
-        <ListItemSC>
-          <span>Художник: </span>
-          {card.artistName}
-        </ListItemSC>
+        {card.artistName && (
+          <ListItemSC>
+            <span>Художник: </span>
+            {card.artistName}
+          </ListItemSC>
+        )}
       </InfoListSC>
     </>
   );

@@ -59,15 +59,6 @@ const Cards: FC<ICardsProps> = ({ gameMode }) => {
                         );
                       }
                     }
-                    // if (i == 0 && i < arr.length) {
-                    //   if (item.title !== arr[i + 1].title) {
-                    //     let title: string | undefined;
-                    //     if (classes) {
-                    //       title = item.title;
-                    //     }
-
-                    //   }
-                    // }
                   })}
                 </>
               )}

@@ -4,8 +4,10 @@ import { useAppDispatch, useAppSelector } from "@/hooks/state";
 import {
   addLoadingBGCards,
   addLoadingCards,
+  addLoadingMercCards,
   fetchBGCards,
   fetchCards,
+  fetchMercCards,
 } from "@/store/cardProccess/asyncThunk/cardsApi";
 import { ICards } from "@/lib/models/cardsModel";
 
@@ -38,9 +40,7 @@ export const useCards = (gameMode: "standard" | "bg" | "mercenary") => {
         return result;
       }
       case "bg": {
-        console.log(cards);
         for (let i = 0; i < cards.length; i++) {
-          console.log(cards[i].battlegrounds);
           if (cards[i].battlegrounds?.hero) {
             result.push({ ...cards[i], title: "Герои" });
           } else if (cards[i].battlegrounds?.tier) {
@@ -54,13 +54,15 @@ export const useCards = (gameMode: "standard" | "bg" | "mercenary") => {
         return result;
       }
       case "mercenary": {
+        result = cards.map((item) => {
+          return { ...item, title: "Все карты" };
+        });
         return result;
       }
     }
   };
   const currentCard = titleAdd();
   const getCards = async () => {
-    console.log(gameMode);
     switch (gameMode) {
       case "standard": {
         dispatch(fetchCards({}));
@@ -71,32 +73,29 @@ export const useCards = (gameMode: "standard" | "bg" | "mercenary") => {
         break;
       }
       case "mercenary": {
+        dispatch(fetchMercCards({}));
         break;
       }
       default: {
-        console.log(gameMode === "bg");
         dispatch(fetchCards({}));
       }
     }
   };
   const addCards = async () => {
-    console.log(gameMode);
     switch (gameMode) {
       case "standard": {
-        console.log(2);
         dispatch(addLoadingCards({}));
         break;
       }
       case "bg": {
-        console.log(1);
         dispatch(addLoadingBGCards({}));
         break;
       }
       case "mercenary": {
+        dispatch(addLoadingMercCards({}));
         break;
       }
       default: {
-        console.log(2);
         dispatch(fetchCards({}));
       }
     }
@@ -111,9 +110,8 @@ export const useCards = (gameMode: "standard" | "bg" | "mercenary") => {
     return () => {
       document.removeEventListener("scroll", infinityScroll);
     };
-  }, [checkPosition, throttle]);
+  }, [checkPosition, endCard, throttle]);
   useEffect(() => {
-    console.log(gameMode);
     getCards();
   }, []);
 

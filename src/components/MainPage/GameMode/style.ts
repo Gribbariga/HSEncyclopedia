@@ -4,7 +4,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 const SectionSC = styled("section")`
   position: relative;
-  background-image: url(img/image/GameModeBG.jpg);
+  background-image: url(/img/image/GameModeBG.jpg);
   background-color: rgba(255, 255, 255, 0.6);
   padding: 0 0 20px 0px;
   &:after {

@@ -1,12 +1,14 @@
 import { NameSpacesStore } from "@/lib/constants/store";
-import { ICards } from "@/lib/models/cardsModel";
+import { ICards, ICardsModel } from "@/lib/models/cardsModel";
 import { StateType } from "@/types/store/state";
 import { createSlice } from "@reduxjs/toolkit";
 import {
   addLoadingBGCards,
   addLoadingCards,
+  addLoadingMercCards,
   fetchBGCards,
   fetchCards,
+  fetchMercCards,
 } from "./asyncThunk/cardsApi";
 
 export interface IInitialState {
@@ -31,6 +33,31 @@ const initialState: IInitialState = {
   endCard: false,
 };
 
+const pending = (state: IInitialState, isAdd = false) => {
+  if (!isAdd) {
+    state.cards = [];
+  }
+  state.loading = true;
+  state.error = false;
+};
+const fulfilled = (state: IInitialState, payload: ICardsModel) => {
+  state.cardCount = payload.cardCount;
+  state.pageCount = payload.pageCount;
+  state.page = payload.page + 1;
+  state.cards = [...state.cards, ...payload.cards];
+  state.loading = false;
+  if (payload.cards.length < state.limit) {
+    console.log(payload.cards.length, state.limit);
+    console.log("?");
+    state.endCard = true;
+  }
+};
+
+const rejected = (state: IInitialState) => {
+  state.error = true;
+  state.loading = false;
+};
+
 const AppCards = createSlice({
   name: "cards",
   initialState,
@@ -45,65 +72,58 @@ const AppCards = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(fetchCards.pending, (state) => {
-      state.cards = [];
-      state.loading = true;
-      state.error = false;
+      pending(state);
     });
     builder.addCase(fetchCards.fulfilled, (state, { payload }) => {
-      state.cardCount = payload.cardCount;
-      state.pageCount = payload.pageCount;
-      state.page = payload.page + 1;
-      state.cards = payload.cards;
-      state.loading = false;
-      if (payload.cards.length < state.limit) {
-        state.endCard = true;
-      }
+      fulfilled(state, payload);
     });
     builder.addCase(fetchCards.rejected, (state) => {
-      state.error = true;
-      state.loading = false;
+      rejected(state);
     });
     builder.addCase(addLoadingCards.pending, (state) => {
-      state.loading = true;
+      pending(state, true);
     });
     builder.addCase(addLoadingCards.fulfilled, (state, { payload }) => {
-      state.page += 1;
-      state.cards = [...state.cards, ...payload.cards];
-      state.loading = false;
-      if (payload.cards.length < state.limit) {
-        state.endCard = true;
-      }
+      fulfilled(state, payload);
     });
     builder.addCase(addLoadingCards.rejected, (state) => {
-      state.error = true;
-      state.loading = false;
+      rejected(state);
     });
     builder.addCase(fetchBGCards.pending, (state) => {
-      state.loading = true;
-      state.error = false;
-      state.cards = [];
+      pending(state);
     });
     builder.addCase(fetchBGCards.fulfilled, (state, { payload }) => {
-      state.cards = payload.cards;
-      state.cardCount = payload.cardCount;
-      state.pageCount = payload.pageCount;
-      state.page += 1;
-      state.loading = false;
+      fulfilled(state, payload);
     });
     builder.addCase(fetchBGCards.rejected, (state) => {
-      state.error = true;
-      state.loading = false;
+      rejected(state);
     });
     builder.addCase(addLoadingBGCards.pending, (state) => {
-      state.loading = true;
-      state.error = false;
+      pending(state, true);
     });
     builder.addCase(addLoadingBGCards.fulfilled, (state, { payload }) => {
-      state.cards = [...state.cards, ...payload.cards];
-      state.page += 1;
-      if (payload.cards.length < state.limit) {
-        state.endCard = true;
-      }
+      fulfilled(state, payload);
+    });
+    builder.addCase(addLoadingBGCards.rejected, (state) => {
+      rejected(state);
+    });
+    builder.addCase(fetchMercCards.pending, (state, { payload }) => {
+      pending(state);
+    });
+    builder.addCase(fetchMercCards.fulfilled, (state, { payload }) => {
+      fulfilled(state, payload);
+    });
+    builder.addCase(fetchMercCards.rejected, (state, { payload }) => {
+      rejected(state);
+    });
+    builder.addCase(addLoadingMercCards.pending, (state, { payload }) => {
+      pending(state, true);
+    });
+    builder.addCase(addLoadingMercCards.fulfilled, (state, { payload }) => {
+      fulfilled(state, payload);
+    });
+    builder.addCase(addLoadingMercCards.rejected, (state, { payload }) => {
+      rejected(state);
     });
   },
 });

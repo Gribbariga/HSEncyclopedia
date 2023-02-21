@@ -47,9 +47,9 @@ export const addLoadingCards = createAsyncThunk<
   { state: StateType }
 >("cards/add", async ({}, { getState }) => {
   const { page, limit } = getState().Cards;
-
+  const sort = "manaCost:asc,name:asc,classes:asc,groupByClass:asc";
   const res = await BlizzardAxios.get(
-    `${baseURL}&page=${page}&pageSize=${limit}&sort=groupByClass:asc`,
+    `${baseURL}&page=${page}&pageSize=${limit}&set=standard&sort=${sort}`,
   );
   return await res.data;
 });
@@ -61,7 +61,7 @@ export const fetchBGCards = createAsyncThunk<
 >("BGcards/", async ({}, { getState }) => {
   const sort = "tier:asc;name:asc";
   const res = await BlizzardAxios.get(
-    `${baseURL}&gameMode=battlegrounds&sort=${sort}`,
+    `${baseURL}&gameMode=battlegrounds&page=1&pageSize=${250}&sort=${sort}`,
   );
 
   return res.data;
@@ -72,10 +72,37 @@ export const addLoadingBGCards = createAsyncThunk<
   IFetchCards,
   { state: StateType }
 >("BGcards/add", async ({}, { getState }) => {
-  const sort = "gameMode=battlegrounds";
+  const sort = "tier:asc;name:asc";
   const { page } = getState().Cards;
 
-  const res = await BlizzardAxios.get(`${baseURL}&${sort}&page=${page}`);
+  const res = await BlizzardAxios.get(
+    `${baseURL}&gameMode=battlegrounds&page=${page}&pageSize=${250}&sort=${sort}`,
+  );
+
+  return res.data;
+});
+export const fetchMercCards = createAsyncThunk<
+  ICardsModel,
+  IFetchCards,
+  { state: StateType }
+>("MercCards/", async ({}, { getState }) => {
+  const sort = "tier:asc;name:asc";
+  const res = await BlizzardAxios.get(`${baseURL}&gameMode=mercenaries&page=1`);
+
+  return res.data;
+});
+
+export const addLoadingMercCards = createAsyncThunk<
+  ICardsModel,
+  IFetchCards,
+  { state: StateType }
+>("MercCards/add", async ({}, { getState }) => {
+  const sort = "tier:asc;name:asc";
+  const { page } = getState().Cards;
+
+  const res = await BlizzardAxios.get(
+    `${baseURL}&gameMode=mercenaries&page=${page}`,
+  );
 
   return res.data;
 });

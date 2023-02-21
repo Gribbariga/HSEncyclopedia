@@ -39,7 +39,9 @@ const FullView: FC<IFullView> = ({ isActive, cardIndex, setActive }) => {
           </CardWrapperSC>
           <RightSizeSC>
             <TitleSC>{card.name}</TitleSC>
-            <DescriptionSC>«{card.flavorText}»</DescriptionSC>
+            {card.flavorText && (
+              <DescriptionSC>«{card.flavorText}»</DescriptionSC>
+            )}
             <CardEffectSC dangerouslySetInnerHTML={{ __html: card.text }} />
             <InfoList card={card} />
             {card.keywordIds && <KeyWords keyWordsIds={card.keywordIds} />}
