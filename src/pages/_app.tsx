@@ -9,7 +9,6 @@ import { AppProps } from "next/app";
 import { Provider } from "react-redux";
 
 export default function App({ Component, pageProps }: AppProps) {
-  console.log(process.env);
   return (
     <>
       <GlobalStyles />

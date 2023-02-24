@@ -43,7 +43,7 @@ export default class MyDocument extends Document {
 
   render(): ReactElement {
     return (
-      <Html lang="en">
+      <Html lang="ru">
         <Head></Head>
         <body>
           <Main />

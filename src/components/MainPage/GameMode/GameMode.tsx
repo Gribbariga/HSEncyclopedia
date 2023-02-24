@@ -21,7 +21,7 @@ const GameMode = () => {
           onSwiper={(swiper) => console.log(swiper)}
           loop={true}>
           <SwiperSlideSC>
-            <SlideWrapperSC BGUrl={"img/image/MainPageSlideOne.jpg"}>
+            <SlideWrapperSC BGUrl={"/img/image/MainPageSlideOne.jpg"}>
               <SlideTitleSC>Стандартный</SlideTitleSC>
               <OneSlideDescrSC>
                 Стандартный формат предоставляет классический геймплей игр жанра
@@ -30,7 +30,7 @@ const GameMode = () => {
             </SlideWrapperSC>
           </SwiperSlideSC>
           <SwiperSlideSC>
-            <TwoSlideWrapperSC BGUrl="img/image/MainPageSlideTwo.jpg">
+            <TwoSlideWrapperSC BGUrl="/img/image/MainPageSlideTwo.jpg">
               <SlideTitleSC>Арена</SlideTitleSC>
               <TwoSlideDescrSC>
                 Купите билет на арену, соберите колоду, выбирая по одной карте
@@ -40,7 +40,7 @@ const GameMode = () => {
             </TwoSlideWrapperSC>
           </SwiperSlideSC>
           <SwiperSlideSC>
-            <SlideWrapperSC BGUrl="img/image/MainPageSlideThree.jpg">
+            <SlideWrapperSC BGUrl="/img/image/MainPageSlideThree.jpg">
               <SlideTitleSC>Поля сражений</SlideTitleSC>
               <ThreeSlideDescrSC>
                 В режиме «Поля сражений» вам и 7 другим игрокам предстоит
@@ -52,7 +52,7 @@ const GameMode = () => {
             </SlideWrapperSC>
           </SwiperSlideSC>
           <SwiperSlideSC>
-            <SlideWrapperSC BGUrl="img/image/MainPageSlideFour.jpg">
+            <SlideWrapperSC BGUrl="/img/image/MainPageSlideFour.jpg">
               <SlideTitleSC>Наёмники</SlideTitleSC>
               <FourSlideDescrSC>
                 Выполняйте поручения в режиме для одного игрока или сражайтесь с
