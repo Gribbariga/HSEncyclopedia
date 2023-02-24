@@ -6,6 +6,7 @@ const SectionSC = styled("section")`
   height: 100vh;
   padding: 250px;
   overflow: hidden;
+  z-index: 1000;
 `;
 
 const VideoWrapperSC = styled("div")`

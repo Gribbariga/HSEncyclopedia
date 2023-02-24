@@ -1,15 +1,10 @@
 import styled from "styled-components";
 
-const CardsBackgroundSC = styled("div")`
-  background-image: url("/img/image/CardsBG.jpg");
-  padding-bottom: 60px;
-  min-height: 100vh;
-`;
-
 const ListSC = styled("div")`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  padding-bottom: 60px;
 `;
 const ClassTitle = styled("h2")`
   position: relative;
@@ -40,5 +35,4 @@ const ClassTitle = styled("h2")`
 export const useCardsStyle = () => ({
   ListSC,
   ClassTitle,
-  CardsBackgroundSC,
 });

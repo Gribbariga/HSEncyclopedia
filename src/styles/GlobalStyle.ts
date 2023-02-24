@@ -27,6 +27,8 @@ export const GlobalStyles = createGlobalStyle`
 
   main {
     flex-grow: 1;
+    min-height: calc(100% - 200px);
+    background: url("/img/image/CardsBG.jpg");
   }
 
   button {
