@@ -17,38 +17,24 @@ const Cards: FC<ICardsProps> = ({ gameMode }) => {
     useCards(gameMode);
   return (
     <>
-      <CardsBackgroundSC>
-        <ContainerSC>
-          <ListSC>
-            <>
-              {currentCard[0] && (
-                <>
-                  <ClassTitle>{currentCard[0].title}</ClassTitle>
-                  <Card
-                    openFullView={handlerClick}
-                    card={currentCard[0]}
-                    index={0}
-                    gameMode={gameMode}
-                  />
-                  {currentCard.map((item, i, arr) => {
-                    if (i !== 0) {
-                      if (item.title !== arr[i - 1].title) {
-                        return (
-                          <>
-                            <ClassTitle key={item.title}>
-                              {item.title}
-                            </ClassTitle>
-                            <Card
-                              openFullView={handlerClick}
-                              key={item.id}
-                              card={item}
-                              index={i}
-                              gameMode={gameMode}
-                            />
-                          </>
-                        );
-                      } else {
-                        return (
+      <ContainerSC>
+        <ListSC>
+          <>
+            {currentCard[0] && (
+              <>
+                <ClassTitle>{currentCard[0].title}</ClassTitle>
+                <Card
+                  openFullView={handlerClick}
+                  card={currentCard[0]}
+                  index={0}
+                  gameMode={gameMode}
+                />
+                {currentCard.map((item, i, arr) => {
+                  if (i !== 0) {
+                    if (item.title !== arr[i - 1].title) {
+                      return (
+                        <>
+                          <ClassTitle key={item.title}>{item.title}</ClassTitle>
                           <Card
                             openFullView={handlerClick}
                             key={item.id}
@@ -56,17 +42,27 @@ const Cards: FC<ICardsProps> = ({ gameMode }) => {
                             index={i}
                             gameMode={gameMode}
                           />
-                        );
-                      }
+                        </>
+                      );
+                    } else {
+                      return (
+                        <Card
+                          openFullView={handlerClick}
+                          key={item.id}
+                          card={item}
+                          index={i}
+                          gameMode={gameMode}
+                        />
+                      );
                     }
-                  })}
-                </>
-              )}
-            </>
-          </ListSC>
-          {loading && <Spinner />}
-        </ContainerSC>
-      </CardsBackgroundSC>
+                  }
+                })}
+              </>
+            )}
+          </>
+        </ListSC>
+        {loading && <Spinner />}
+      </ContainerSC>
       <FullView
         cardIndex={fullView.index}
         isActive={fullView.isActive}
@@ -76,6 +72,6 @@ const Cards: FC<ICardsProps> = ({ gameMode }) => {
   );
 };
 
-const { ListSC, ClassTitle, CardsBackgroundSC } = useCardsStyle();
+const { ListSC, ClassTitle } = useCardsStyle();
 
 export default React.memo(Cards);

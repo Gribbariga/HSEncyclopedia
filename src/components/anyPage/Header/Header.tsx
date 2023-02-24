@@ -25,7 +25,7 @@ const Header = () => {
                 <NavListLinkSC href={"/cards/mercenaries"}>
                   Наемники
                 </NavListLinkSC>
-                <NavListLinkSC href={"/"}>Наемники</NavListLinkSC>
+                <NavListLinkSC href={"/keyWords"}>Ключевые слова</NavListLinkSC>
                 <NavListLinkSC href={"/"}>Наемники</NavListLinkSC>
               </NavListSC>
             </LinkNavSC>
