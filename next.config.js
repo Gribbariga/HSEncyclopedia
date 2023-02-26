@@ -11,11 +11,7 @@ const nextConfig = {
   
   
   reactStrictMode: false,
-  withTM:require('next-transpile-modules')([
-    '@mui/material',
-    '@mui/system',
-    '@mui/icons-material', // If @mui/icons-material is being used
-  ]),
+
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/i,

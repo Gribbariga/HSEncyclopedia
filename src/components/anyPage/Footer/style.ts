@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { TextField } from "@mui/material";
+import { Button, TextField } from "@mui/material";
 
 const FooterSC = styled("footer")`
   width: 100%;
@@ -100,6 +100,10 @@ const TextAreaMUI = styled(TextField)`
   }
 `;
 
+const SubmitButtonSC = styled(Button)`
+  background-color: #3e75c3;
+`;
+
 export const userFooterStyles = () => ({
   FormSC,
   FooterSC,
@@ -109,6 +113,7 @@ export const userFooterStyles = () => ({
   FormTitleSC,
   SocialLinkSC,
   OuterWrapperSC,
+  SubmitButtonSC,
   SocialWrapperSC,
   RightSideWrapperSC,
 });
