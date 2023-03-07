@@ -1,7 +1,7 @@
 import React from "react";
 import { useFooterStyles } from "./style";
 
-import Vk from "../../../assets/icon/vl.svg";
+import Vk from "../../../assets/icon/vk.svg";
 import Github from "../../../assets/icon/Github.svg";
 import { ContainerSC } from "../Container/Container";
 import FormFeedback from "./FormFeedback/FormFeedback";
