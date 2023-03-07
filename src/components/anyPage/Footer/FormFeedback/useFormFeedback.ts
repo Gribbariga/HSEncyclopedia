@@ -8,8 +8,12 @@ interface IFormInput {
   message: string;
 }
 
-export const useFooter = () => {
-  const { control, handleSubmit } = useForm({
+export const useFormFeedback = () => {
+  const {
+    control,
+    formState: { errors },
+    handleSubmit,
+  } = useForm({
     defaultValues: {
       name: "",
       phone: "",
@@ -18,10 +22,13 @@ export const useFooter = () => {
     },
   });
 
+  const handlerChangePhone = () => {
+    
+  }
+
   const handlerSubmit: SubmitHandler<IFormInput> = (data, event) => {
     sendEmail(event?.target);
-    console.log();
   };
 
-  return { control, handleSubmit, handlerSubmit };
+  return { control, errors, handleSubmit, handlerSubmit };
 };

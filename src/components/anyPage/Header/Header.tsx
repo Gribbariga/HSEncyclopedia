@@ -26,7 +26,6 @@ const Header = () => {
                   Наемники
                 </NavListLinkSC>
                 <NavListLinkSC href={"/keyWords"}>Ключевые слова</NavListLinkSC>
-                <NavListLinkSC href={"/"}>Наемники</NavListLinkSC>
               </NavListSC>
             </LinkNavSC>
             <NavLinkSC href={"/"}>Обучение</NavLinkSC>
