@@ -1,30 +1,50 @@
 import React from "react";
-import { userFooterStyles } from "./style";
+import { useFooterStyles } from "./style";
 
 import Vk from "@/icon/vk.svg";
 import Github from "@/icon/Github.svg";
+import { ContainerSC } from "../Container/Container";
+import { Controller } from "react-hook-form";
+import FormFeedback from "./FormFeedback/FormFeedback";
 
 const Footer = () => {
   return (
     <>
       <FooterSC>
-        <AboutMeSC>
-          Проект разработан в учебных целях почта:mormir09@gmail.com
-        </AboutMeSC>
-        <SocialWrapperSC>
-          <SocialLinkSC href="/">
-            <Vk />
-          </SocialLinkSC>
-          <SocialLinkSC href="/">
-            <Github />
-          </SocialLinkSC>
-        </SocialWrapperSC>
+        <ContainerSC maxWidth={1500}>
+          <OuterWrapperSC>
+            <FormFeedback />
+            <RightSideWrapperSC>
+              <AboutMeSC>
+                Проект разработан в учебных целях почта:mormir09@gmail.com
+              </AboutMeSC>
+              <SocialWrapperSC>
+                <SocialLinkSC
+                  target={"_blank"}
+                  href="https://vk.com/id490763721">
+                  <Vk />
+                </SocialLinkSC>
+                <SocialLinkSC
+                  target={"_blank"}
+                  href="https://github.com/Gribbariga">
+                  <Github />
+                </SocialLinkSC>
+              </SocialWrapperSC>
+            </RightSideWrapperSC>
+          </OuterWrapperSC>
+        </ContainerSC>
       </FooterSC>
     </>
   );
 };
 
-const { FooterSC, AboutMeSC, SocialLinkSC, SocialWrapperSC } =
-  userFooterStyles();
+const {
+  FooterSC,
+  AboutMeSC,
+  SocialLinkSC,
+  OuterWrapperSC,
+  SocialWrapperSC,
+  RightSideWrapperSC,
+} = useFooterStyles();
 
 export default React.memo(Footer);
