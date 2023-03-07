@@ -4,7 +4,8 @@ import { useFormFeedbackStyles } from "./style";
 import { useFormFeedback } from "./useFormFeedback";
 
 const FormFeedback = () => {
-  const { control, errors, handleSubmit, handlerSubmit } = useFormFeedback();
+  const { control, errors, handleSubmit, handlerSubmit, handlerChangePhone } =
+    useFormFeedback();
   return (
     <FormSC onSubmit={handleSubmit(handlerSubmit)}>
       <>
@@ -42,7 +43,9 @@ const FormFeedback = () => {
                   variant="outlined"
                   {...field}
                   error={!!errors.phone}
-                  onChange={(e) => field.onChange("11")}
+                  onChange={(e) =>
+                    handlerChangePhone(e.target.value, field.onChange)
+                  }
                 />
                 <ErrorInputTextSC isVisible={!!errors.phone}>
                   {errors.phone ? errors.phone.message : ""}

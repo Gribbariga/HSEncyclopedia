@@ -1,4 +1,5 @@
 import { sendEmail } from "@/lib/http/EmailJS";
+import { checkIsNumber } from "@/lib/service/service";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 interface IFormInput {
@@ -22,13 +23,18 @@ export const useFormFeedback = () => {
     },
   });
 
-  const handlerChangePhone = () => {
-    
-  }
+  const handlerChangePhone = (
+    value: any,
+    onChange: (...event: any[]) => void,
+  ) => {
+    if (checkIsNumber(value)) {
+      onChange(value);
+    }
+  };
 
   const handlerSubmit: SubmitHandler<IFormInput> = (data, event) => {
     sendEmail(event?.target);
   };
 
-  return { control, errors, handleSubmit, handlerSubmit };
+  return { control, errors, handleSubmit, handlerSubmit, handlerChangePhone };
 };

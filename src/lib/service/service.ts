@@ -62,3 +62,8 @@ export const checkPosition = (
     }
   }
 };
+
+export const checkIsNumber = (value: string) => {
+  const reg = /^\d+$/;
+  return value.search(reg) != -1;
+};
