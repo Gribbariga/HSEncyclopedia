@@ -1,10 +1,9 @@
 import React from "react";
 import { useFooterStyles } from "./style";
 
-import Vk from "@/icon/vk.svg";
-import Github from "@/icon/Github.svg";
+import Vk from "../../../assets/icon/vl.svg";
+import Github from "../../../assets/icon/Github.svg";
 import { ContainerSC } from "../Container/Container";
-import { Controller } from "react-hook-form";
 import FormFeedback from "./FormFeedback/FormFeedback";
 
 const Footer = () => {
