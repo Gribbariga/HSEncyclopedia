@@ -67,3 +67,7 @@ export const checkIsNumber = (value: string) => {
   const reg = /^\d+$/;
   return value.search(reg) != -1;
 };
+
+export const mediaQuery = (size: string | number) => {
+  return `@media (max-width: ${size}px)`;
+};
