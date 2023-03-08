@@ -34,7 +34,8 @@ const InputMUI = styled(TextField)`
       border-radius: 20px;
     }
     & > .MuiOutlinedInput-notchedOutline {
-      border-color: ${(prop) => (prop.error ? "#FF0000" : "#ffffff")};
+      border-color: ${(prop) =>
+        prop.error ? "#FF0000" : "#ffffff"} !important;
     }
   }
 `;
