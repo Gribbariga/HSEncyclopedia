@@ -20,7 +20,7 @@ const InputMUI = styled(TextField)`
   margin: 0 0 ${(prop) => (prop.error ? "5px" : "25px")} 0 !important;
 
   & > .MuiFormLabel-root {
-    color: ${(prop) => (prop.error ? "#FF0000" : "#ffffff")};
+    color: ${(prop) => (prop.error ? "#FF0000" : "#ffffff")} !important;
     top: -7px;
   }
 
@@ -60,7 +60,7 @@ const ErrorInputTextSC = styled("p")<{ isVisible: boolean }>`
 const TextAreaMUI = styled(TextField)`
   margin: 0 0 10px 0 !important;
   & > .MuiFormLabel-root {
-    color: #ffffff;
+    color: #ffffff !important;
     top: -7px;
   }
   & > .MuiInputBase-root {
@@ -80,12 +80,12 @@ const TextAreaMUI = styled(TextField)`
         border-radius: 20px; /* закругления плашки */
       }
       padding: 5px 7px;
-      color: #ffffff;
+      color: #ffffff !important;
       border-radius: 20px;
     }
 
     & > .MuiOutlinedInput-notchedOutline {
-      border-color: #ffffff;
+      border-color: #ffffff !important;
     }
   }
 `;
