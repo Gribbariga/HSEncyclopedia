@@ -58,7 +58,7 @@ const ErrorInputTextSC = styled("p")<{ isVisible: boolean }>`
 `;
 
 const TextAreaMUI = styled(TextField)`
-  margin-bottom: 10px;
+  margin: 0 0 10px 0 !important;
   & > .MuiFormLabel-root {
     color: #ffffff;
     top: -7px;
@@ -76,7 +76,7 @@ const TextAreaMUI = styled(TextField)`
       &::-webkit-scrollbar-thumb {
         width: 10px;
 
-        background-color: #ffffff; /* цвет плашки */
+        background-color: #ffffff !important; /* цвет плашки */
         border-radius: 20px; /* закругления плашки */
       }
       padding: 5px 7px;
