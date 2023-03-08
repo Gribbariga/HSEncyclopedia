@@ -1,3 +1,4 @@
+import { mediaQuery } from "@/lib/service/service";
 import styled from "styled-components";
 
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -26,11 +27,20 @@ const TitleSC = styled("h2")`
   color: #ffffff;
   margin-bottom: 15px;
   z-index: 3;
+  ${mediaQuery(450)} {
+    font-size: 30px;
+  }
 `;
 const SwiperSC = styled(Swiper)`
   width: 100%;
   height: 720px;
   z-index: 1000;
+  ${mediaQuery(1024)} {
+    height: 600px;
+  }
+  ${mediaQuery(850)} {
+    height: 480px;
+  }
 `;
 const SwiperSlideSC = styled(SwiperSlide)`
   height: 100%;
@@ -51,6 +61,14 @@ const SlideTitleSC = styled("h3")`
   font-weight: 500;
   color: #ffffff;
   margin-bottom: 100px;
+  ${mediaQuery(720)} {
+    margin-bottom: 30px;
+    font-size: 30px;
+  }
+  ${mediaQuery(600)} {
+    margin-bottom: 10px;
+    font-size: 25px;
+  }
 `;
 
 const OneSlideDescrSC = styled("p")`
@@ -59,6 +77,12 @@ const OneSlideDescrSC = styled("p")`
   color: #ffffff;
   width: 60%;
   margin-left: 15px;
+  ${mediaQuery(1024)} {
+    font-size: 25px;
+  }
+  ${mediaQuery(600)} {
+    font-size: 20px;
+  }
 `;
 
 const TwoSlideWrapperSC = styled(SlideWrapperSC)`
@@ -70,14 +94,29 @@ const TwoSlideWrapperSC = styled(SlideWrapperSC)`
 
 const TwoSlideDescrSC = styled(OneSlideDescrSC)`
   width: 70%;
+  ${mediaQuery(450)} {
+    width: 90%;
+  }
 `;
 
 const ThreeSlideDescrSC = styled(TwoSlideDescrSC)`
   width: 40%;
+  ${mediaQuery(1024)} {
+    width: 65%;
+  }
+  ${mediaQuery(450)} {
+    width: 80%;
+  }
 `;
 
 const FourSlideDescrSC = styled(OneSlideDescrSC)`
   width: 40%;
+  ${mediaQuery(900)} {
+    width: 70%;
+  }
+  ${mediaQuery(450)} {
+    width: 90%;
+  }
 `;
 export const useGameModeStyle = () => ({
   TwoSlideWrapperSC,

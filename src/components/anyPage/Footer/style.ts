@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 import { Button, TextField } from "@mui/material";
+import { mediaQuery } from "@/lib/service/service";
 
 const FooterSC = styled("footer")`
   width: 100%;
@@ -10,6 +11,10 @@ const FooterSC = styled("footer")`
 const OuterWrapperSC = styled("div")`
   display: flex;
   justify-content: center;
+  ${mediaQuery(750)} {
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 const RightSideWrapperSC = styled("div")`
   max-width: 500px;
@@ -22,6 +27,9 @@ const AboutMeSC = styled("div")`
   color: #ffffff;
   text-align: center;
   margin-bottom: 15px;
+  ${mediaQuery(450)} {
+    font-size: 17px;
+  }
 `;
 const SocialWrapperSC = styled("div")`
   display: flex;

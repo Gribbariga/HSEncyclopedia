@@ -92,6 +92,7 @@ const TextAreaMUI = styled(TextField)`
 
 const SubmitButtonSC = styled(Button)`
   background-color: #3e75c3;
+  margin-bottom: 15px;
 `;
 
 export const useFormFeedbackStyles = () => ({
