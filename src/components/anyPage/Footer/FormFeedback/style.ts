@@ -17,7 +17,7 @@ const FormTitleSC = styled("h3")`
 
 const InputMUI = styled(TextField)`
   transition: all 0.5s;
-  margin: 0 0 ${(prop) => (prop.error ? "5px" : "25px")} 0;
+  margin: 0 0 ${(prop) => (prop.error ? "5px" : "25px")} 0 !important;
 
   & > .MuiFormLabel-root {
     color: ${(prop) => (prop.error ? "#FF0000" : "#ffffff")};
