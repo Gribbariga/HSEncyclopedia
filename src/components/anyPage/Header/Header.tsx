@@ -2,15 +2,21 @@ import Link from "next/link";
 import React from "react";
 import { ContainerSC } from "../Container/Container";
 import { useHeaderStyles } from "./style";
+import { useHeader } from "./useHeader";
 
 const Header = () => {
+  const { isMobile } = useHeader();
+
   return (
     <HeaderSC>
       <ContainerSC maxWidth={1500}>
         <WrapperSC>
-          <Link href={"/"}>
-            <LogoSC src={"/img/image/Logo.png"} />
-          </Link>
+          {!isMobile && (
+            <Link href={"/"}>
+              <LogoSC src={"/img/image/Logo.png"} />
+            </Link>
+          )}
+
           <NavMenuSC>
             <NavLinkSC href={"/"}>Главная</NavLinkSC>
             <LinkNavSC>
