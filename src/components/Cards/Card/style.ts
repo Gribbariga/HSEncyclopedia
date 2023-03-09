@@ -1,5 +1,6 @@
+import { mediaQuery } from "@/lib/service/service";
 import styled from "styled-components";
-
+// 296px
 const CardWrapperSC = styled("div")<{
   gameMode: "standard" | "bg" | "mercenary";
 }>`
@@ -10,6 +11,18 @@ const CardWrapperSC = styled("div")<{
   transform: perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1);
   &:hover {
     transform: scale(1.035, 1.035, 1.035);
+  }
+  ${mediaQuery(1024)} {
+    width: ${({ gameMode }) => (gameMode === "standard" ? "25%" : "15%")};
+  }
+  ${mediaQuery(760)} {
+    width: ${({ gameMode }) => (gameMode === "standard" ? "33%" : "15%")};
+  }
+  ${mediaQuery(600)} {
+    width: ${({ gameMode }) => (gameMode === "standard" ? "50%" : "15%")};
+  }
+  ${mediaQuery(400)} {
+    width: ${({ gameMode }) => (gameMode === "standard" ? "100%" : "15%")};
   }
 `;
 
