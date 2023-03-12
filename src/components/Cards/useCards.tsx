@@ -50,7 +50,6 @@ export const useCards = (gameMode: "standard" | "bg" | "mercenary") => {
             });
           }
         }
-        console.log(result);
         return result;
       }
       case "mercenary": {
@@ -69,7 +68,7 @@ export const useCards = (gameMode: "standard" | "bg" | "mercenary") => {
         break;
       }
       case "bg": {
-        dispatch(fetchBGCards({}));
+        // dispatch(fetchBGCards({}));
         break;
       }
       case "mercenary": {

@@ -26,7 +26,9 @@ interface IFetchCards {
   sort?: string;
   order?: string;
 }
-const baseURL = `cards?locale=ru_RU&access_token=${getCookiesByName("token")}`;
+const baseURL = `cards?locale=ru_RU&access_token=${
+  getCookiesByName("token") || ""
+}`;
 
 export const fetchCards = createAsyncThunk<
   ICardsModel,
@@ -56,14 +58,17 @@ export const addLoadingCards = createAsyncThunk<
 
 export const fetchBGCards = createAsyncThunk<
   ICardsModel,
-  IFetchCards,
+  string,
   { state: StateType }
->("BGcards/", async ({}, { getState }) => {
+>("BGcards/", async (token = "", { getState }) => {
   const sort = "tier:asc;name:asc";
-  const res = await BlizzardAxios.get(
-    `${baseURL}&gameMode=battlegrounds&page=1&pageSize=${250}&sort=${sort}`,
-  );
+  console.log(baseURL);
 
+  const res = await BlizzardAxios.get(
+    `${baseURL}${
+      token || ""
+    }&gameMode=battlegrounds&page=1&pageSize=${250}&sort=${sort}`,
+  );
   return res.data;
 });
 

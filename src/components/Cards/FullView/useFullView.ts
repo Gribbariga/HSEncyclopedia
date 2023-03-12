@@ -35,8 +35,6 @@ export const useFullView = (
     e.stopPropagation();
     setCurrentIndex((prev) => {
       if (prev === null) return prev;
-      console.log(lenght);
-      console.log(prev);
       if (prev === lenght - 1 && step > 0) return 0;
       if (prev === 0 && step < 0) return lenght - 1;
       return prev + step;

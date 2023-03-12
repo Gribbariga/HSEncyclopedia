@@ -57,7 +57,6 @@ export const checkPosition = (
 
   if (position >= threshold - offset) {
     if (!blocking) {
-      console.log(1);
       action();
     }
   }

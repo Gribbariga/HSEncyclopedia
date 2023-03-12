@@ -9,7 +9,6 @@ interface ITripletProps {
 
 const Triplet: FC<ITripletProps> = ({ Title, upgradeId }) => {
   const { goldCard } = useTriplet(upgradeId);
-  console.log(goldCard);
   return (
     <TripletWrapperSC>
       <TripletImgSC src="/img/image/anyPage/cardFullView/Triplet.png" />

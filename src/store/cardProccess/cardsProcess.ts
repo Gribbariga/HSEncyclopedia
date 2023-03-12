@@ -47,8 +47,6 @@ const fulfilled = (state: IInitialState, payload: ICardsModel) => {
   state.cards = [...state.cards, ...payload.cards];
   state.loading = false;
   if (payload.cards.length < state.limit) {
-    console.log(payload.cards.length, state.limit);
-    console.log("?");
     state.endCard = true;
   }
 };
