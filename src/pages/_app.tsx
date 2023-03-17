@@ -10,11 +10,9 @@ function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <GlobalStyles />
-      <Provider store={makeStore()}>
-        <MainLayoyt>
-          <Component {...pageProps} />
-        </MainLayoyt>
-      </Provider>
+      <MainLayoyt>
+        <Component {...pageProps} />
+      </MainLayoyt>
       <InitComponents />
     </>
   );

@@ -2,7 +2,7 @@ import { NameSpacesStore } from "@/lib/constants/store";
 import { StateType } from "@/types/store/state";
 import { createSlice } from "@reduxjs/toolkit";
 
-interface ITestInitialState {
+export interface ITestInitialState {
   test: string;
 }
 

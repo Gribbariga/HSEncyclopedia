@@ -4,13 +4,13 @@ import { StateType } from "@/types/store/state";
 import { createSlice } from "@reduxjs/toolkit";
 import { fetchMeta } from "./asyncThunk/metaProcessApi";
 
-interface IInitialState {
+export interface IMetaInitialState {
   allMeta: IAllMeta | null;
   loading: boolean;
   error: boolean;
 }
 
-const initialState: IInitialState = {
+const initialState: IMetaInitialState = {
   allMeta: null,
   loading: false,
   error: false,

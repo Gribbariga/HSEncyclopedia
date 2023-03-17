@@ -64,7 +64,7 @@ export const useCards = (gameMode: "standard" | "bg" | "mercenary") => {
   const getCards = async () => {
     switch (gameMode) {
       case "standard": {
-        dispatch(fetchCards({}));
+        // dispatch(fetchCards({}));
         break;
       }
       case "bg": {
@@ -72,7 +72,7 @@ export const useCards = (gameMode: "standard" | "bg" | "mercenary") => {
         break;
       }
       case "mercenary": {
-        dispatch(fetchMercCards({}));
+        // dispatch(fetchMercCards({}));
         break;
       }
       default: {

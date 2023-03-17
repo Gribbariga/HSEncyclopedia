@@ -24,15 +24,16 @@ export const masterReducer = (
 ) => {
   if (action.type === HYDRATE) {
     let endCard = false;
-    if (action.payload.Cards.length < 250) {
+    if (action.payload.Cards.length < 150) {
       endCard = true;
     }
+    console.log(action);
     const nextState = {
       ...state,
       [NameSpacesStore.Cards]: {
         cards: action.payload.Cards.cards,
         page: action.payload.Cards.page,
-        limit: 250,
+        limit: 150,
         cardCount: action.payload.Cards.cardCount,
         pageCount: action.payload.Cards.pageCount,
         error: false,
@@ -43,7 +44,7 @@ export const masterReducer = (
         test: "test124",
       },
       [NameSpacesStore.Meta]: {
-        allMeta: null,
+        allMeta: action.payload.Meta.allMeta,
         loading: false,
         error: false,
       },

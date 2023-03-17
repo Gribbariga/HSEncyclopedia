@@ -5,7 +5,7 @@ const KeyWordsListSC = styled("div")`
   display: flex;
   flex-wrap: wrap;
   padding: 25px 0;
-  justify-content: space-between;
+  justify-content: center;
 `;
 
 const KeyWordsWrapperSC = styled("div")`
@@ -15,6 +15,7 @@ const KeyWordsWrapperSC = styled("div")`
   width: 228px;
   height: 146px;
   margin-bottom: 10px;
+  margin-right: 15px;
 `;
 
 const KeyWordsTitleSC = styled("h4")`
