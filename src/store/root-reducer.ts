@@ -33,7 +33,7 @@ export const masterReducer = (
       [NameSpacesStore.Cards]: {
         cards: action.payload.Cards.cards,
         page: action.payload.Cards.page,
-        limit: 150,
+        limit: 100,
         cardCount: action.payload.Cards.cardCount,
         pageCount: action.payload.Cards.pageCount,
         error: false,

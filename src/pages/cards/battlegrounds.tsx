@@ -11,9 +11,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
   (store) =>
     async ({ req }) => {
       // console.log("^&%W#@32232", await fetchAccessToken());
-      await store.dispatch(
-        fetchBGCards({ token: await fetchAccessToken(), customLimit: 80 }),
-      );
+      await store.dispatch(fetchBGCards({ token: await fetchAccessToken() }));
       return {
         props: {},
       };

@@ -25,7 +25,7 @@ export interface ICardsInitialState {
 const initialState: ICardsInitialState = {
   cards: [],
   page: 1,
-  limit: 120,
+  limit: 100,
   cardCount: null,
   pageCount: null,
   error: false,
