@@ -5,9 +5,7 @@ import {
   addLoadingBGCards,
   addLoadingCards,
   addLoadingMercCards,
-  fetchBGCards,
   fetchCards,
-  fetchMercCards,
 } from "@/store/cardProccess/asyncThunk/cardsApi";
 import { ICards } from "@/lib/models/cardsModel";
 
@@ -61,25 +59,7 @@ export const useCards = (gameMode: "standard" | "bg" | "mercenary") => {
     }
   };
   const currentCard = titleAdd();
-  const getCards = async () => {
-    switch (gameMode) {
-      case "standard": {
-        // dispatch(fetchCards({}));
-        break;
-      }
-      case "bg": {
-        // dispatch(fetchBGCards({}));
-        break;
-      }
-      case "mercenary": {
-        // dispatch(fetchMercCards({}));
-        break;
-      }
-      default: {
-        dispatch(fetchCards({}));
-      }
-    }
-  };
+
   const addCards = async () => {
     switch (gameMode) {
       case "standard": {
@@ -110,9 +90,6 @@ export const useCards = (gameMode: "standard" | "bg" | "mercenary") => {
       document.removeEventListener("scroll", infinityScroll);
     };
   }, [checkPosition, endCard, throttle]);
-  useEffect(() => {
-    getCards();
-  }, []);
 
   const handlerClick = (index: number | null) => {
     setFullView((prev) => ({ isActive: !prev?.isActive, index: index }));

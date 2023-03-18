@@ -1,7 +1,6 @@
 import { ICards } from "@/lib/models/cardsModel";
 import { fCardRotate, mouseLive } from "@/lib/service/service";
 import { memo, FC } from "react";
-import FullView from "../FullView/FullView";
 import { useCardStyle } from "./style";
 import { useCard } from "./useCard";
 
@@ -22,7 +21,13 @@ const Card: FC<ICard> = ({ card, index, gameMode, openFullView }) => {
         onMouseMove={fCardRotate}
         onMouseLeave={mouseLive}>
         <CardPerspectiveSC onMouseMove={fCardRotate} onMouseLeave={mouseLive}>
-          <ImageSC src={card.image} />
+          <ImageSC
+            loader={() => card.image}
+            src={card.image}
+            alt={card.name}
+            width={0}
+            height={0}
+          />
         </CardPerspectiveSC>
       </CardWrapperSC>
     </>

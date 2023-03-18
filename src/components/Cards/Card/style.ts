@@ -1,6 +1,8 @@
 import { mediaQuery } from "@/lib/service/service";
+
+import Image from "next/image";
+
 import styled from "styled-components";
-// 296px
 const CardWrapperSC = styled("div")<{
   gameMode: "standard" | "bg" | "mercenary";
 }>`
@@ -36,7 +38,7 @@ const CardPerspectiveSC = styled("div")`
   }
 `;
 
-const ImageSC = styled("img")`
+const ImageSC = styled(Image)`
   transition: all 0.5s;
   width: 100%;
   height: 100%;

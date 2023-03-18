@@ -1,8 +1,6 @@
 import Modal from "@/components/anyPage/Modal/Modal";
-import { ICards } from "@/lib/models/cardsModel";
 import { fCardRotate, mouseLive } from "@/lib/service/service";
 import React, { FC } from "react";
-import ReactDOM from "react-dom";
 import InfoList from "./InfoList/InfoList";
 import KeyWords from "./KeyWords/KeyWords";
 import { useFullViewStyle } from "./style";

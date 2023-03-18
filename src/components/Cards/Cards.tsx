@@ -1,4 +1,3 @@
-import { useAppSelector } from "@/hooks/state";
 import React, { FC } from "react";
 import { ContainerSC } from "../anyPage/Container/Container";
 import Spinner from "../anyPage/Spinner/Spinner";
@@ -12,8 +11,7 @@ interface ICardsProps {
 }
 
 const Cards: FC<ICardsProps> = ({ gameMode }) => {
-  const { cards, classes, loading, fullView, currentCard, handlerClick } =
-    useCards(gameMode);
+  const { loading, fullView, currentCard, handlerClick } = useCards(gameMode);
   return (
     <>
       <ContainerSC>
