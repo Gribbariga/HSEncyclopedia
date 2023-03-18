@@ -22,11 +22,14 @@ const Card: FC<ICard> = ({ card, index, gameMode, openFullView }) => {
         onMouseLeave={mouseLive}>
         <CardPerspectiveSC onMouseMove={fCardRotate} onMouseLeave={mouseLive}>
           <ImageSC
-            loader={() => card.image}
+            loader={({ src, width, quality }) => {
+              return `${src}?w=${width}&q=${quality || 75}`;
+            }}
             src={card.image}
             alt={card.name}
             width={0}
             height={0}
+            style={{ width: "100%", height: "100%" }}
           />
         </CardPerspectiveSC>
       </CardWrapperSC>
