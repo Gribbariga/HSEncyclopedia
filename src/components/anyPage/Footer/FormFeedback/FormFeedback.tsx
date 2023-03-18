@@ -73,7 +73,6 @@ const FormFeedback = () => {
                   {...field}
                   error={!!errors.email}
                 />
-                {console.log(errors.email)}
                 <ErrorInputTextSC isVisible={!!errors.email}>
                   {errors.email ? errors.email.message : ""}
                 </ErrorInputTextSC>

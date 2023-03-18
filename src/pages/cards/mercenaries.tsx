@@ -10,7 +10,6 @@ export default function StandartPage() {
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) =>
     async ({ req }) => {
-      // console.log("^&%W#@32232", await fetchAccessToken());
       await store.dispatch(fetchMercCards({ token: await fetchAccessToken() }));
       return {
         props: {},

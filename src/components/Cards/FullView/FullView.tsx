@@ -3,6 +3,7 @@ import { fCardRotate, mouseLive } from "@/lib/service/service";
 import React, { FC } from "react";
 import InfoList from "./InfoList/InfoList";
 import KeyWords from "./KeyWords/KeyWords";
+import RelatedCards from "./RelatedCards/RelatedCards";
 import { useFullViewStyle } from "./style";
 import Triplet from "./Triplet/Triplet";
 import { useFullView } from "./useFullView";
@@ -49,7 +50,7 @@ const FullView: FC<IFullView> = ({ isActive, cardIndex, setActive }) => {
                 upgradeId={card.battlegrounds?.upgradeId || 0}
               />
             )}
-
+            {card.childIds && <RelatedCards ids={card.childIds} />}
             {card.keywordIds && <KeyWords keyWordsIds={card.keywordIds} />}
           </RightSizeSC>
           <ArrowWrapperSC side="right" onClick={(e) => handlerNextCard(e, 1)}>

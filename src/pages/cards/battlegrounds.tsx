@@ -14,7 +14,6 @@ export const getServerSideProps = wrapper.getServerSideProps(
         "Cache-Control",
         "public, s-maxage=10, stale-while-revalidate=59",
       );
-      // console.log("^&%W#@32232", await fetchAccessToken());
       await store.dispatch(fetchBGCards({ token: await fetchAccessToken() }));
       return {
         props: {},

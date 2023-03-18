@@ -42,7 +42,6 @@ export const fetchCards = createAsyncThunk<
   { state: StateType }
 >("cards/", async ({ token, customLimit }, { getState }) => {
   const { limit } = getState().Cards;
-  console.log(customLimit);
   const sort = "manaCost:asc,name:asc,classes:asc,groupByClass:asc";
   const res = await BlizzardAxios.get(
     `${baseURL}${token || ""}&page=1&class=all&pageSize=${
@@ -105,7 +104,6 @@ export const fetchMercCards = createAsyncThunk<
   { state: StateType }
 >("MercCards/", async ({ customLimit, token }, { getState }) => {
   const sort = "tier:asc;name:asc";
-  console.log(1);
 
   const res = await BlizzardAxios.get(
     `${baseURL}${token || ""}&gameMode=mercenaries&page=1`,

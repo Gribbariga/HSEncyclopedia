@@ -27,7 +27,6 @@ export const masterReducer = (
     if (action.payload.Cards.length < 150) {
       endCard = true;
     }
-    console.log(action);
     const nextState = {
       ...state,
       [NameSpacesStore.Cards]: {

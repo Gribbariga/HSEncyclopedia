@@ -15,7 +15,7 @@ const InfoList: FC<IInfoListProps> = ({ card }) => {
         {infoListData.map((item) => {
           if (item.isRender) {
             return (
-              <ListItemSC>
+              <ListItemSC key={item.text}>
                 <span>{item.text}</span>
               </ListItemSC>
             );
