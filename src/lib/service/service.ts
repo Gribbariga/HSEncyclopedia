@@ -57,7 +57,6 @@ export const checkPosition = (
 
   if (position >= threshold - offset) {
     if (!blocking) {
-      console.log(1);
       action();
     }
   }
@@ -66,4 +65,8 @@ export const checkPosition = (
 export const checkIsNumber = (value: string) => {
   const reg = /^\d+$/;
   return value.search(reg) != -1;
+};
+
+export const mediaQuery = (size: string | number) => {
+  return `@media (max-width: ${size}px)`;
 };

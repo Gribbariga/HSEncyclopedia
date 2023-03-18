@@ -1,3 +1,4 @@
+import { mediaQuery } from "@/lib/service/service";
 import Link from "next/link";
 import styled from "styled-components";
 
@@ -50,6 +51,10 @@ const LinkNavSC = styled("li")`
       visibility: visible;
     }
   }
+  ${mediaQuery(500)} {
+    font-size: 16px;
+    padding: 15px;
+  }
 `;
 
 const NavListSC = styled("div")`
@@ -64,9 +69,12 @@ const NavListSC = styled("div")`
 const NavLinkSC = styled(Link)`
   font-size: 20px;
   color: #fcd144;
+  ${mediaQuery(500)} {
+    font-size: 16px;
+  }
 `;
 const NavListLinkSC = styled(NavLinkSC)`
-  width: 400px;
+  width: 200px;
   margin-bottom: 20px;
 `;
 

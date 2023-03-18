@@ -45,10 +45,13 @@ const FullView: FC<IFullView> = ({ isActive, cardIndex, setActive }) => {
             )}
             <CardEffectSC dangerouslySetInnerHTML={{ __html: card.text }} />
             <InfoList card={card} />
-            <Triplet
-              Title={card.name}
-              upgradeId={card.battlegrounds?.upgradeId || 0}
-            />
+            {card.battlegrounds?.upgradeId && (
+              <Triplet
+                Title={card.name}
+                upgradeId={card.battlegrounds?.upgradeId || 0}
+              />
+            )}
+
             {card.keywordIds && <KeyWords keyWordsIds={card.keywordIds} />}
           </RightSizeSC>
           <ArrowWrapperSC side="right" onClick={(e) => handlerNextCard(e, 1)}>

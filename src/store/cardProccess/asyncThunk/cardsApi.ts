@@ -2,7 +2,7 @@ import { getCookiesByName } from "@/lib/service/service";
 import { BlizzardAxios } from "@/lib/http/BlizzAxios";
 import { ICardsModel } from "@/lib/models/cardsModel";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { IInitialState } from "../cardsProcess";
+import { ICardsInitialState } from "../cardsProcess";
 import { resourceLimits } from "worker_threads";
 import { StateType } from "@/types/store/state";
 
@@ -26,77 +26,98 @@ interface IFetchCards {
   sort?: string;
   order?: string;
 }
-const baseURL = `cards?locale=ru_RU&access_token=${getCookiesByName("token")}`;
+
+interface IArgsApi {
+  token?: string;
+  customLimit?: number;
+}
+
+const baseURL = `cards?locale=ru_RU&access_token=${
+  getCookiesByName("token") || ""
+}`;
 
 export const fetchCards = createAsyncThunk<
   ICardsModel,
-  IFetchCards,
+  IArgsApi,
   { state: StateType }
->("cards/", async ({}, { getState }) => {
+>("cards/", async ({ token, customLimit }, { getState }) => {
   const { limit } = getState().Cards;
+  console.log(customLimit);
   const sort = "manaCost:asc,name:asc,classes:asc,groupByClass:asc";
   const res = await BlizzardAxios.get(
-    `${baseURL}&page=1&class=all&pageSize=${limit}&set=standard&sort=${sort}`,
+    `${baseURL}${token || ""}&page=1&class=all&pageSize=${
+      customLimit || limit
+    }&set=standard&sort=${sort}`,
   );
+
   return await res.data;
 });
 
 export const addLoadingCards = createAsyncThunk<
   ICardsModel,
-  IFetchCards,
+  IArgsApi,
   { state: StateType }
->("cards/add", async ({}, { getState }) => {
+>("cards/add", async ({ customLimit, token }, { getState }) => {
   const { page, limit } = getState().Cards;
   const sort = "manaCost:asc,name:asc,classes:asc,groupByClass:asc";
   const res = await BlizzardAxios.get(
-    `${baseURL}&page=${page}&pageSize=${limit}&set=standard&sort=${sort}`,
+    `${baseURL}&page=${page}&pageSize=${
+      customLimit || limit
+    }&set=standard&sort=${sort}`,
   );
   return await res.data;
 });
 
 export const fetchBGCards = createAsyncThunk<
   ICardsModel,
-  IFetchCards,
+  IArgsApi,
   { state: StateType }
->("BGcards/", async ({}, { getState }) => {
+>("BGcards/", async ({ token, customLimit }, { getState }) => {
   const sort = "tier:asc;name:asc";
+  const { limit } = getState().Cards;
   const res = await BlizzardAxios.get(
-    `${baseURL}&gameMode=battlegrounds&page=1&pageSize=${250}&sort=${sort}`,
+    `${baseURL}${token || ""}&gameMode=battlegrounds&page=1&pageSize=${
+      customLimit || limit
+    }&sort=${sort}`,
   );
-
   return res.data;
 });
 
 export const addLoadingBGCards = createAsyncThunk<
   ICardsModel,
-  IFetchCards,
+  IArgsApi,
   { state: StateType }
->("BGcards/add", async ({}, { getState }) => {
+>("BGcards/add", async ({ customLimit, token }, { getState }) => {
   const sort = "tier:asc;name:asc";
   const { page } = getState().Cards;
-
+  const { limit } = getState().Cards;
   const res = await BlizzardAxios.get(
-    `${baseURL}&gameMode=battlegrounds&page=${page}&pageSize=${250}&sort=${sort}`,
+    `${baseURL}&gameMode=battlegrounds&page=${page}&pageSize=${
+      customLimit || limit
+    }&sort=${sort}`,
   );
 
   return res.data;
 });
 export const fetchMercCards = createAsyncThunk<
   ICardsModel,
-  IFetchCards,
+  IArgsApi,
   { state: StateType }
->("MercCards/", async ({}, { getState }) => {
+>("MercCards/", async ({ customLimit, token }, { getState }) => {
   const sort = "tier:asc;name:asc";
-  const res = await BlizzardAxios.get(`${baseURL}&gameMode=mercenaries&page=1`);
+  console.log(1);
 
+  const res = await BlizzardAxios.get(
+    `${baseURL}${token || ""}&gameMode=mercenaries&page=1`,
+  );
   return res.data;
 });
 
 export const addLoadingMercCards = createAsyncThunk<
   ICardsModel,
-  IFetchCards,
+  IArgsApi,
   { state: StateType }
->("MercCards/add", async ({}, { getState }) => {
+>("MercCards/add", async ({ customLimit, token }, { getState }) => {
   const sort = "tier:asc;name:asc";
   const { page } = getState().Cards;
 

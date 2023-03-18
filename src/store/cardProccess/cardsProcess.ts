@@ -11,7 +11,7 @@ import {
   fetchMercCards,
 } from "./asyncThunk/cardsApi";
 
-export interface IInitialState {
+export interface ICardsInitialState {
   cards: ICards[];
   page: number;
   limit: number;
@@ -22,10 +22,10 @@ export interface IInitialState {
   endCard: boolean;
 }
 
-const initialState: IInitialState = {
+const initialState: ICardsInitialState = {
   cards: [],
   page: 1,
-  limit: 250,
+  limit: 100,
   cardCount: null,
   pageCount: null,
   error: false,
@@ -33,27 +33,25 @@ const initialState: IInitialState = {
   endCard: false,
 };
 
-const pending = (state: IInitialState, isAdd = false) => {
+const pending = (state: ICardsInitialState, isAdd = false) => {
   if (!isAdd) {
     state.cards = [];
   }
   state.loading = true;
   state.error = false;
 };
-const fulfilled = (state: IInitialState, payload: ICardsModel) => {
+const fulfilled = (state: ICardsInitialState, payload: ICardsModel) => {
   state.cardCount = payload.cardCount;
   state.pageCount = payload.pageCount;
   state.page = payload.page + 1;
   state.cards = [...state.cards, ...payload.cards];
   state.loading = false;
   if (payload.cards.length < state.limit) {
-    console.log(payload.cards.length, state.limit);
-    console.log("?");
     state.endCard = true;
   }
 };
 
-const rejected = (state: IInitialState) => {
+const rejected = (state: ICardsInitialState) => {
   state.error = true;
   state.loading = false;
 };

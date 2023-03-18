@@ -1,3 +1,5 @@
+import { device } from "@/lib/constants/mediaSize";
+import { mediaQuery } from "@/lib/service/service";
 import styled from "styled-components";
 
 const SectionSC = styled("section")`
@@ -7,6 +9,9 @@ const SectionSC = styled("section")`
   padding: 250px;
   overflow: hidden;
   z-index: 1000;
+  ${mediaQuery(500)} {
+    padding: 100px;
+  }
 `;
 
 const VideoWrapperSC = styled("div")`
@@ -17,6 +22,12 @@ const VideoWrapperSC = styled("div")`
   height: 100%;
   overflow: hidden;
   padding: 150px;
+  ${mediaQuery(950)} {
+    padding: 50px;
+  }
+  ${mediaQuery(451)} {
+    padding: 30px 0 0 0;
+  }
 `;
 
 const VideoSC = styled("video")`
@@ -38,6 +49,18 @@ const MainTitleSC = styled("h1")`
   font-size: 40px;
   font-weight: 700;
   max-width: 600px;
+  ${mediaQuery(1150)} {
+    max-width: 500px;
+    font-size: 35px;
+  }
+  ${mediaQuery(600)} {
+    margin-bottom: 15px;
+    text-align: center;
+    font-size: 28px;
+  }
+  ${mediaQuery(410)} {
+    font-size: 26px;
+  }
 `;
 
 const DescriptionSC = styled("p")`
@@ -45,6 +68,18 @@ const DescriptionSC = styled("p")`
   font-size: 30px;
   max-width: 800px;
   margin-left: 40px;
+  ${mediaQuery(1150)} {
+    max-width: 600px;
+    font-size: 25px;
+    margin-left: 20px;
+  }
+  ${mediaQuery(600)} {
+    margin-left: 0;
+    text-align: center;
+  }
+  ${mediaQuery(410)} {
+    font-size: 23px;
+  }
 `;
 
 const BlurSC = styled("div")`

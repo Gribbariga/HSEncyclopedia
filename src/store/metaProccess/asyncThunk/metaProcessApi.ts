@@ -6,12 +6,17 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 
 const baseURL = "/metadata?locale=ru_RU&access_token=";
 
-export const fetchMeta = createAsyncThunk<IAllMeta, void, { state: StateType }>(
-  "meta/",
-  async () => {
-    const res = await BlizzardAxios.get(
-      `${baseURL}${getCookiesByName("token")}`,
-    );
-    return await res.data;
-  },
-);
+interface IArgsApi {
+  token?: string;
+}
+
+export const fetchMeta = createAsyncThunk<
+  IAllMeta,
+  IArgsApi,
+  { state: StateType }
+>("meta/", async ({ token }) => {
+  const res = await BlizzardAxios.get(
+    `${baseURL}${getCookiesByName("token") || token}`,
+  );
+  return await res.data;
+});

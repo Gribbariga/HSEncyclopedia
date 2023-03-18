@@ -1,15 +1,27 @@
+import { mediaQuery } from "@/lib/service/service";
 import styled from "styled-components";
 
-const KeyWordsWrapperSC = styled("div")``;
+const KeyWordsWrapperSC = styled("div")`
+  ${mediaQuery(890)} {
+    margin-bottom: 20px;
+  }
+`;
 
 const KeyWordsTitleSC = styled("h4")`
   color: #ffffff;
   font-size: 21px;
   margin-bottom: 7px;
+  ${mediaQuery(890)} {
+    text-align: center;
+  }
 `;
 
 const KeyWordsListSC = styled("ul")`
   display: flex;
+  ${mediaQuery(890)} {
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 const KeyWordsItemSC = styled("li")`

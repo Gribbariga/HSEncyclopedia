@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import axios from "axios";
+import { wrapper } from "@/store/index";
 const BlizzardInit = () => {
   const fetchAccessToken = async () => {
     const response = await axios.post(

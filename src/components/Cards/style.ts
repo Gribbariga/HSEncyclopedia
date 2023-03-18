@@ -1,3 +1,4 @@
+import { mediaQuery } from "@/lib/service/service";
 import styled from "styled-components";
 
 const ListSC = styled("div")`
@@ -29,6 +30,24 @@ const ClassTitle = styled("h2")`
   }
   &::before {
     left: 0;
+  }
+  ${mediaQuery(1120)} {
+    &::after,
+    ::before {
+      width: 25%;
+    }
+  }
+  ${mediaQuery(850)} {
+    font-size: 30px;
+  }
+  ${mediaQuery(1120)} {
+    &::after,
+    ::before {
+      width: 15%;
+    }
+  }
+  ${mediaQuery(500)} {
+    font-size: 21px;
   }
 `;
 

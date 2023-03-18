@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
 const OverlaySC = styled("div")<{ isActive: boolean }>`
+  overflow-y: scroll;
   z-index: 9999;
   transition: all 0.3s;
   opacity: ${({ isActive }) => (isActive ? 1 : 0)};
-  overflow: ${({ isActive }) => (isActive ? "visible" : "hidden")};
   visibility: ${({ isActive }) => (isActive ? "visible" : "hidden")};
   position: fixed;
   top: 0;

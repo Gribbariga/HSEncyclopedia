@@ -10,7 +10,6 @@ export const useInfoList = (card: ICards) => {
   const cardType = types?.find((item) => item.id === card.cardTypeId);
   const cardSets = sets?.find((item) => item.id === card.cardSetId);
   const minionType = minionTypes?.find((item) => item.id === card.minionTypeId);
-  console.log(rare?.craftingCost);
   const infoListData = [
     { text: `Тип: ${cardType?.name}`, isRender: cardType?.name || false },
     { text: `Редкость: ${rare?.name}`, isRender: rare?.name || false },

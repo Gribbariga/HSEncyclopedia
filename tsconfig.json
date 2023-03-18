@@ -33,6 +33,6 @@
       "@/fetch/*": ["lib/fetch/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/store/root-reducer.js"],
   "exclude": ["node_modules"]
 }
