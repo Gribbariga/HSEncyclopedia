@@ -1,3 +1,5 @@
+import { ruRU } from "@mui/material/locale";
+
 export const themeObj = {
   colors: {},
   media: {
@@ -8,4 +10,5 @@ export const themeObj = {
     medium: "(max-width: 768px)",
     small: "(max-width: 600px)",
   },
+  ruRU,
 };
