@@ -13,7 +13,8 @@ interface IList {
 interface ISelectProps {
   styleSelect: FlattenSimpleInterpolation;
   styleMenu?: FlattenSimpleInterpolation;
-  onChange: (name: string, value: string) => () => void;
+  onChange: (name: string) => void;
+  onSelectCallback?: (...args: any[]) => void;
   value: string;
   name: string;
   label?: string;
@@ -21,6 +22,7 @@ interface ISelectProps {
 }
 
 const Select: FC<ISelectProps> = ({
+  onSelectCallback,
   styleSelect,
   styleMenu,
   onChange,
@@ -29,7 +31,7 @@ const Select: FC<ISelectProps> = ({
   list,
   name,
 }) => {
-  const { isOpen, handleClickSelect } = useSelect();
+  const { isOpen, handleSelect, handleClickSelect } = useSelect(onChange);
   return (
     <>
       <SelectMUI
@@ -42,7 +44,9 @@ const Select: FC<ISelectProps> = ({
           open: isOpen,
           MenuProps: {
             disableScrollLock: true,
-            MenuListProps: { style: {} },
+            MenuListProps: {
+              style: { maxHeight: "300px", zIndex: 10000 },
+            },
           },
         }}>
         <MenuItem
@@ -52,18 +56,18 @@ const Select: FC<ISelectProps> = ({
           {label}
         </MenuItem>
         {list.map((item) => (
-          <MenuItem
-            key={item.value}
-            onClick={onChange(name, item.value)}
+          <MenuItemMUI
+            key={item.name}
+            onClick={handleSelect(name, item.value, onSelectCallback)}
             value={item.value}>
             {item.name}
-          </MenuItem>
+          </MenuItemMUI>
         ))}
       </SelectMUI>
     </>
   );
 };
 
-const { SelectMUI } = useSelectStyle();
+const { MenuMUI, SelectMUI, MenuItemMUI } = useSelectStyle();
 
 export default Select;

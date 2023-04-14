@@ -1,7 +1,7 @@
 import { NameSpacesStore } from "@/lib/constants/store";
 import { ICards, ICardsModel } from "@/lib/models/cardsModel";
 import { StateType } from "@/types/store/state";
-import { createSlice } from "@reduxjs/toolkit";
+import { Action, current, createSlice } from "@reduxjs/toolkit";
 import {
   addLoadingBGCards,
   addLoadingCards,
@@ -10,6 +10,21 @@ import {
   fetchCards,
   fetchMercCards,
 } from "./asyncThunk/cardsApi";
+
+interface IFilter {
+  class: string;
+  manaCost: string;
+  set: string;
+  search: string;
+  type: string;
+  minionType: string;
+  spellSchool: string;
+  rarity: string;
+  keyword: string;
+  attack: number[];
+  health: number[];
+  mana: number[];
+}
 
 export interface ICardsInitialState {
   cards: ICards[];
@@ -20,8 +35,23 @@ export interface ICardsInitialState {
   error: boolean;
   loading: boolean;
   endCard: boolean;
+  filterCard: IFilter;
 }
-
+interface IFilterAction {
+  payload: {
+    filterType:
+      | "class"
+      | "manaCost"
+      | "set"
+      | "search"
+      | "type"
+      | "minionType"
+      | "spellSchool"
+      | "rarity"
+      | "keyword";
+    value: string;
+  };
+}
 const initialState: ICardsInitialState = {
   cards: [],
   page: 1,
@@ -31,7 +61,22 @@ const initialState: ICardsInitialState = {
   error: false,
   loading: false,
   endCard: false,
+  filterCard: {
+    class: "",
+    manaCost: "",
+    set: "",
+    search: "",
+    type: "",
+    minionType: "",
+    spellSchool: "",
+    rarity: "",
+    keyword: "",
+    attack: [],
+    health: [],
+    mana: [],
+  },
 };
+console.log(initialState);
 
 const pending = (state: ICardsInitialState, isAdd = false) => {
   if (!isAdd) {
@@ -46,6 +91,7 @@ const fulfilled = (state: ICardsInitialState, payload: ICardsModel) => {
   state.page = payload.page + 1;
   state.cards = [...state.cards, ...payload.cards];
   state.loading = false;
+
   if (payload.cards.length < state.limit) {
     state.endCard = true;
   }
@@ -66,6 +112,9 @@ const AppCards = createSlice({
       state.cardCount = null;
       state.pageCount = null;
       state.endCard = false;
+    },
+    setFilter(state, action: IFilterAction) {
+      state.filterCard[action.payload.filterType] = action.payload.value;
     },
   },
   extraReducers: (builder) => {

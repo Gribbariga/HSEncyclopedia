@@ -8,7 +8,7 @@ const HeaderSC = styled("header")`
   width: 100%;
 
   background: url(/img/image/headerBG.png);
-  z-index: 9999;
+  z-index: 7000;
 `;
 const WrapperSC = styled("div")`
   height: 60px;

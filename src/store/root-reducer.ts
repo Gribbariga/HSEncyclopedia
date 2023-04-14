@@ -38,6 +38,17 @@ export const masterReducer = (
         error: false,
         loading: false,
         endCard: endCard,
+        filterCard: {
+          class: "",
+          manaCost: "",
+          set: "",
+          search: "",
+          type: "",
+          minionType: "",
+          spellSchool: "",
+          rarity: "",
+          keyword: "",
+        },
       },
       [NameSpacesStore.Test]: {
         test: "test124",

@@ -41,12 +41,14 @@ export const fetchCards = createAsyncThunk<
   IArgsApi,
   { state: StateType }
 >("cards/", async ({ token, customLimit }, { getState }) => {
-  const { limit } = getState().Cards;
+  const { limit, filterCard } = getState().Cards;
   const sort = "manaCost:asc,name:asc,classes:asc,groupByClass:asc";
   const res = await BlizzardAxios.get(
-    `${baseURL}${token || ""}&page=1&class=all&pageSize=${
+    `${baseURL}${token || ""}&page=1&class=${filterCard.class}&pageSize=${
       customLimit || limit
-    }&set=standard&sort=${sort}`,
+    }&set=${filterCard.set}&sort=${sort}${
+      filterCard.search && `&textFilter=${filterCard.search}`
+    }`,
   );
 
   return await res.data;
@@ -57,12 +59,14 @@ export const addLoadingCards = createAsyncThunk<
   IArgsApi,
   { state: StateType }
 >("cards/add", async ({ customLimit, token }, { getState }) => {
-  const { page, limit } = getState().Cards;
+  const { page, limit, filterCard } = getState().Cards;
   const sort = "manaCost:asc,name:asc,classes:asc,groupByClass:asc";
   const res = await BlizzardAxios.get(
-    `${baseURL}&page=${page}&pageSize=${
-      customLimit || limit
-    }&set=standard&sort=${sort}`,
+    `${baseURL}&page=${page}&pageSize=${customLimit || limit}&class=${
+      filterCard.class
+    }&set=${filterCard.set}&sort=${sort}${
+      filterCard.search && `&textFilter=${filterCard.search}`
+    }`,
   );
   return await res.data;
 });

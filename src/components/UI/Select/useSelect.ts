@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export const useSelect = () => {
+export const useSelect = (onChange: (value: string) => void) => {
   const [isOpen, setOpen] = useState(false);
 
   useEffect(() => {
@@ -17,6 +17,18 @@ export const useSelect = () => {
   const handleClickSelect = () => {
     setOpen((prev) => !prev);
   };
+  const handleSelect = (
+    name: string,
+    value: string,
+    callback?: (...args: any[]) => void,
+  ) => {
+    return () => {
+      if (callback) {
+        callback(value);
+      }
+      onChange(value);
+    };
+  };
 
-  return { isOpen, handleClickSelect };
+  return { isOpen, handleSelect, handleClickSelect };
 };
