@@ -9,19 +9,23 @@ export const useFilter = () => {
   const classList = classes?.map((item) => {
     return { value: item.slug, name: item.name };
   });
+  const method = useForm({
+    defaultValues: {
+      class: "",
+      set: "",
+      search: "",
+      attack: [],
+      health: [],
+      mana: [],
+      // message: "",
+    },
+  });
   const {
     control,
     setValue,
     formState: { errors },
     handleSubmit,
-  } = useForm({
-    defaultValues: {
-      class: "",
-      set: "",
-      search: "",
-      // message: "",
-    },
-  });
+  } = method;
   let setsList = [
     { name: "Стандартный формат", value: "standart" },
     { name: "Вольный формат", value: "wild" },
@@ -56,9 +60,10 @@ export const useFilter = () => {
   };
   const handlerSubmit = (e: any, data: any) => {};
   return {
+    method,
     control,
-    classList,
     setsList,
+    classList,
     handleSubmit,
     handleSearch,
     handlerSubmit,

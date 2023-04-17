@@ -42,11 +42,14 @@ const BackgroundSC = styled("div")`
 `;
 
 const FormSC = styled("form")`
-  display: flex;
-  justify-content: space-between;
   padding: 20px 0 20px 0;
   min-height: 200px;
   width: 100%;
+`;
+const TopWrapperSC = styled("div")`
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
 `;
 const SelectWrapperSC = styled("div")``;
 
@@ -75,6 +78,7 @@ const SearchInput = styled(TextField)`
 export const useFilterStyle = () => ({
   FormSC,
   SearchInput,
+  TopWrapperSC,
   BackgroundSC,
   SelectMenuCSS,
   SelectClassCSS,
