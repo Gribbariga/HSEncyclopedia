@@ -13,7 +13,7 @@ import {
 
 interface IFilter {
   class: string;
-  manaCost: string;
+  manaCost: number[];
   set: string;
   search: string;
   type: string;
@@ -23,7 +23,6 @@ interface IFilter {
   keyword: string;
   attack: number[];
   health: number[];
-  mana: number[];
 }
 
 export interface ICardsInitialState {
@@ -48,8 +47,10 @@ interface IFilterAction {
       | "minionType"
       | "spellSchool"
       | "rarity"
-      | "keyword";
-    value: string;
+      | "keyword"
+      | "attack"
+      | "health";
+    value: string | number[];
   };
 }
 const initialState: ICardsInitialState = {
@@ -63,7 +64,7 @@ const initialState: ICardsInitialState = {
   endCard: false,
   filterCard: {
     class: "",
-    manaCost: "",
+    manaCost: [],
     set: "",
     search: "",
     type: "",
@@ -73,7 +74,6 @@ const initialState: ICardsInitialState = {
     keyword: "",
     attack: [],
     health: [],
-    mana: [],
   },
 };
 console.log(initialState);
@@ -113,8 +113,15 @@ const AppCards = createSlice({
       state.pageCount = null;
       state.endCard = false;
     },
-    setFilter(state, action: IFilterAction) {
-      state.filterCard[action.payload.filterType] = action.payload.value;
+    setFilter(state, { payload: { filterType: type, value } }: IFilterAction) {
+      const isArrayType =
+        type === "manaCost" || type === "attack" || type === "health";
+
+      if (Array.isArray(value) && isArrayType) {
+        state.filterCard[type] = value;
+      } else if (typeof value === "string" && !isArrayType) {
+        state.filterCard[type] = value;
+      }
     },
   },
   extraReducers: (builder) => {

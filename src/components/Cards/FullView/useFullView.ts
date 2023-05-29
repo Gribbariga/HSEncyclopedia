@@ -40,7 +40,6 @@ export const useFullView = (
       return prev + step;
     });
   };
-
   return {
     card,
     handlerClose,

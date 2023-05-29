@@ -1,19 +1,15 @@
+import { fetchCards } from "@/store/cardProccess/asyncThunk/cardsApi";
+import { IState } from "@/types/types";
 import { Dispatch, SetStateAction, useState } from "react";
 import { useFormContext } from "react-hook-form";
-
-interface IStateArr {
-  number: number;
-  isActive: boolean;
-}
-
-interface IState {
-  value: number;
-  isActive: boolean;
-}
+import { useDispatch } from "react-redux";
+import cardsState from "../../../../store/cardProccess/cardsProcess";
 
 type name = "attack" | "health" | "mana";
 
 export const useSortStat = () => {
+  const dispatch = useDispatch();
+
   const [attack, setAttack] = useState<IState[]>([
     { value: 1, isActive: false },
     { value: 2, isActive: false },
@@ -84,6 +80,19 @@ export const useSortStat = () => {
           const result = setStateValue(mana, number);
           setValueForm(name, result);
           setMana(result);
+          const test = result.filter((item) => {
+            if (item.isActive) {
+              return item.value;
+            }
+          });
+          const a = test.map((item) => item.value);
+          console.log(test);
+          dispatch(
+            cardsState.actions.setFilter({
+              filterType: "manaCost",
+              value: a,
+            }),
+          );
           break;
         }
       }

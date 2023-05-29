@@ -35,7 +35,7 @@ interface IArgsApi {
 const baseURL = `cards?locale=ru_RU&access_token=${
   getCookiesByName("token") || ""
 }`;
-
+console.log(getCookiesByName("token"));
 export const fetchCards = createAsyncThunk<
   ICardsModel,
   IArgsApi,
