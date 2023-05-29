@@ -15,7 +15,7 @@ const KeyWords: FC<IKeyWordsProps> = ({ keyWordsIds }) => {
         <KeyWordsTitleSC>Подробнее:</KeyWordsTitleSC>
         <KeyWordsListSC>
           {keyItem.map((item) => (
-            <KeyWordsItemSC>
+            <KeyWordsItemSC key={item?.id}>
               {item?.name}
               <FullViewWrapperSC>
                 <FullViewTitleSC>{item?.name}</FullViewTitleSC>

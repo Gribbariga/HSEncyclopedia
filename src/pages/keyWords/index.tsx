@@ -13,7 +13,6 @@ export default React.memo(keyWords);
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) =>
     async ({ req }) => {
-      // console.log("^&%W#@32232", await fetchAccessToken());
       await store.dispatch(fetchMeta({ token: await fetchAccessToken() }));
       return {
         props: {},

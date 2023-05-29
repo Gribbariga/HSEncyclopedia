@@ -30,8 +30,8 @@ const Cards: FC<ICardsProps> = ({ gameMode }) => {
                   if (i !== 0) {
                     if (item.title !== arr[i - 1].title) {
                       return (
-                        <>
-                          <ClassTitle key={item.title}>{item.title}</ClassTitle>
+                        <React.Fragment key={item.title}>
+                          <ClassTitle>{item.title}</ClassTitle>
                           <Card
                             openFullView={handlerClick}
                             key={item.id}
@@ -39,7 +39,7 @@ const Cards: FC<ICardsProps> = ({ gameMode }) => {
                             index={i}
                             gameMode={gameMode}
                           />
-                        </>
+                        </React.Fragment>
                       );
                     } else {
                       return (

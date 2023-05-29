@@ -2,7 +2,7 @@ import { mediaQuery } from "@/lib/service/service";
 import styled from "styled-components";
 
 const WrapperSC = styled("div")`
-  margin: 40px 0 40px 0;
+  margin: 40px 0 0px 0;
   display: flex;
   justify-content: center;
   align-items: center;

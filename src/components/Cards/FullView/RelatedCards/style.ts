@@ -1,21 +1,13 @@
 import styled from "styled-components";
 
-const TripletWrapperSC = styled("div")`
-  display: flex;
-  align-items: center;
-`;
-
-const TripletImgSC = styled("img")`
-  margin-right: 10px;
-`;
-
-const TextSC = styled("div")`
+const TitleSC = styled("h4")`
   color: #ffffff;
 `;
 
 const SpanSC = styled("span")`
   cursor: zoom-in;
-  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
   color: #ffffff;
   font-weight: 700;
   text-decoration: underline;
@@ -29,26 +21,30 @@ const SpanSC = styled("span")`
   }
 `;
 
-const TripletSC = styled("div")`
+const CardsWrapperSC = styled("div")`
+  display: flex;
+  flex-wrap: wrap;
+`;
+
+const CardSC = styled("div")`
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -100%);
+  transform: translate(-50%, -110%);
   visibility: hidden;
   overflow: hidden;
   opacity: 0;
   z-index: 9999;
 `;
 
-const GoldImgSC = styled("img")`
+const CardImgSC = styled("img")`
   width: 220px;
 `;
 
-export const useTripletStyle = () => ({
-  TextSC,
+export const useStyleRelatedCards = () => ({
   SpanSC,
-  TripletSC,
-  GoldImgSC,
-  TripletImgSC,
-  TripletWrapperSC,
+  CardSC,
+  TitleSC,
+  CardImgSC,
+  CardsWrapperSC,
 });
