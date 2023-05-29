@@ -1,7 +1,7 @@
 import { NameSpacesStore } from "@/lib/constants/store";
 import { ICards, ICardsModel } from "@/lib/models/cardsModel";
 import { StateType } from "@/types/store/state";
-import { createSlice } from "@reduxjs/toolkit";
+import { Action, current, createSlice } from "@reduxjs/toolkit";
 import {
   addLoadingBGCards,
   addLoadingCards,
@@ -10,6 +10,20 @@ import {
   fetchCards,
   fetchMercCards,
 } from "./asyncThunk/cardsApi";
+
+interface IFilter {
+  class: string;
+  manaCost: number[];
+  set: string;
+  search: string;
+  type: string;
+  minionType: string;
+  spellSchool: string;
+  rarity: string;
+  keyword: string;
+  attack: number[];
+  health: number[];
+}
 
 export interface ICardsInitialState {
   cards: ICards[];
@@ -20,8 +34,25 @@ export interface ICardsInitialState {
   error: boolean;
   loading: boolean;
   endCard: boolean;
+  filterCard: IFilter;
 }
-
+interface IFilterAction {
+  payload: {
+    filterType:
+      | "class"
+      | "manaCost"
+      | "set"
+      | "search"
+      | "type"
+      | "minionType"
+      | "spellSchool"
+      | "rarity"
+      | "keyword"
+      | "attack"
+      | "health";
+    value: string | number[];
+  };
+}
 const initialState: ICardsInitialState = {
   cards: [],
   page: 1,
@@ -31,7 +62,21 @@ const initialState: ICardsInitialState = {
   error: false,
   loading: false,
   endCard: false,
+  filterCard: {
+    class: "",
+    manaCost: [],
+    set: "",
+    search: "",
+    type: "",
+    minionType: "",
+    spellSchool: "",
+    rarity: "",
+    keyword: "",
+    attack: [],
+    health: [],
+  },
 };
+console.log(initialState);
 
 const pending = (state: ICardsInitialState, isAdd = false) => {
   if (!isAdd) {
@@ -46,6 +91,7 @@ const fulfilled = (state: ICardsInitialState, payload: ICardsModel) => {
   state.page = payload.page + 1;
   state.cards = [...state.cards, ...payload.cards];
   state.loading = false;
+
   if (payload.cards.length < state.limit) {
     state.endCard = true;
   }
@@ -66,6 +112,16 @@ const AppCards = createSlice({
       state.cardCount = null;
       state.pageCount = null;
       state.endCard = false;
+    },
+    setFilter(state, { payload: { filterType: type, value } }: IFilterAction) {
+      const isArrayType =
+        type === "manaCost" || type === "attack" || type === "health";
+
+      if (Array.isArray(value) && isArrayType) {
+        state.filterCard[type] = value;
+      } else if (typeof value === "string" && !isArrayType) {
+        state.filterCard[type] = value;
+      }
     },
   },
   extraReducers: (builder) => {

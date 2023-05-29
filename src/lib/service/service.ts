@@ -7,6 +7,7 @@ export const getCookiesByName = (name: string) => {
           "=([^;]*)",
       ),
     );
+    console.log(matches);
     return matches ? decodeURIComponent(matches[1]) : "no token";
   }
 };
