@@ -32,9 +32,6 @@ export const useCards = (gameMode: "standard" | "bg" | "mercenary") => {
         for (let i = 0; i < cards.length; i++) {
           const title = classes?.find((item) => {
             if (cards[i].multiClassIds[0]) {
-              console.log(cards[i]);
-              console.log(cards[i].multiClassIds[1]);
-              console.log(cards[i].multiClassIds[0]);
               return item.id === cards[i - 1].classId;
             }
             return item.id === cards[i].classId;

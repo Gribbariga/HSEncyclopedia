@@ -34,8 +34,7 @@ const Header = () => {
                 <NavListLinkSC href={"/keyWords"}>Ключевые слова</NavListLinkSC>
               </NavListSC>
             </LinkNavSC>
-            <NavLinkSC href={"/"}>Обучение</NavLinkSC>
-            <NavLinkSC href={"/"}>что то</NavLinkSC>
+            <NavLinkSC href={"/news"}>Статьи</NavLinkSC>
           </NavMenuSC>
         </WrapperSC>
       </ContainerSC>
