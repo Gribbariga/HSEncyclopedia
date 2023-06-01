@@ -29,7 +29,7 @@ const NewsPage: FC<INewsPageProps> = ({ news }) => {
           console.log(data.getDate());
 
           return (
-            <NewsItemSC href={`http://localhost:3000/news/${id}`}>
+            <NewsItemSC href={`http://localhost:/news/${id}`}>
               <NewsTitleSC>{title}</NewsTitleSC>
               <DataCreateSC>Дата создания: {formatData}</DataCreateSC>
             </NewsItemSC>
