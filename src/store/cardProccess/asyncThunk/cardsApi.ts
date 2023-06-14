@@ -59,6 +59,7 @@ export const addLoadingCards = createAsyncThunk<
   IArgsApi,
   { state: StateType }
 >("cards/add", async ({ customLimit, token }, { getState }) => {
+  console.log(baseURL);
   const { page, limit, filterCard } = getState().Cards;
   const sort = "manaCost:asc,name:asc,classes:asc,groupByClass:asc";
   const res = await BlizzardAxios.get(
