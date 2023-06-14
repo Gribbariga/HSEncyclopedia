@@ -91,8 +91,8 @@ const Filter = () => {
               </SearchWrapperSC>
             </TopWrapperSC>
 
-            <SortStat />
-            <button>12421421</button>
+            {/* <SortStat /> */}
+            {/* <button>12421421</button> */}
           </FormSC>
         </FormProvider>
       </ContainerSC>

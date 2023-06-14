@@ -1,13 +1,18 @@
 import Select from "@/components/UI/Select/Select";
+import { mediaQuery } from "@/lib/service/service";
 import { TextField } from "@mui/material";
 import styled from "styled-components";
 import { css } from "styled-components";
 
 const SelectClassCSS = css`
+  width: 100%;
   & > .MuiInputBase-root {
+    margin-right: 20px;
+    margin-bottom: 10px;
     height: 50px;
     border-radius: 100px;
     width: 250px;
+    width: 100%;
     color: #000;
     background: url("/img/image/cards-page/filter/selectBG.jpg");
     background-size: 100% 100%;
@@ -24,7 +29,8 @@ const SelectClassCSS = css`
 const SelectFormatCSS = css`
   ${SelectClassCSS}
   & > .MuiInputBase-root {
-    width: 350px;
+    max-width: 350px;
+
     margin-right: 12px;
   }
 `;
@@ -50,10 +56,17 @@ const TopWrapperSC = styled("div")`
   display: flex;
   justify-content: space-between;
   margin-bottom: 10px;
+  ${mediaQuery(620)} {
+    flex-wrap: wrap;
+    flex-direction: column-reverse;
+  }
 `;
 const SelectWrapperSC = styled("div")``;
 
-const SearchWrapperSC = styled("div")``;
+const SearchWrapperSC = styled("div")`
+  display: flex;
+  margin-bottom: 20px;
+`;
 
 const SearchButtonSC = styled("button")`
   width: 50px;

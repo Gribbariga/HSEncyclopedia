@@ -17,6 +17,10 @@ const Footer = () => {
               <AboutMeSC>
                 Проект разработан в учебных целях почта:mormir09@gmail.com
               </AboutMeSC>
+              <AboutMeSC>
+                Поддержите проект деньгами переведя по номеру карты: 2200 7007
+                3273 4487
+              </AboutMeSC>
               <SocialWrapperSC>
                 <SocialLinkSC
                   target={"_blank"}
